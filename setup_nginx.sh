@@ -35,6 +35,8 @@ cd nginx_src && ./configure \
     --pid-path=$INSTALLATION_DIR/tmp/nginx.pid \
     --lock-path=$INSTALLATION_DIR/tmp/nginx.lock \
     --http-fastcgi-temp-path=$INSTALLATION_DIR/tmp/fcgi \
+    --http-client-body-temp-path=$INSTALLATION_DIR/tmp/client_body \
+    --http-proxy-temp-path=$INSTALLATION_DIR/tmp/proxy \
     --with-pcre=$BASE_DIR/pcre_src \
     --without-mail_pop3_module \
     --without-mail_imap_module \
@@ -51,4 +53,5 @@ cd nginx_src && ./configure \
     --without-http_browser_module
 
 make && make install && cd ..
+rm *.tar.gz
 cp -f nginx.conf ./nginx/conf/nginx.conf
