@@ -53,5 +53,4 @@ cd nginx_src && ./configure \
     --without-http_browser_module
 
 make && make install && cd ..
-rm *.tar.gz
 cp -f nginx.conf ./nginx/conf/nginx.conf
