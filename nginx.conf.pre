@@ -18,7 +18,7 @@ http {
     keepalive_timeout  65;
 
     upstream citations_serv {
-        server unix:tmp/citations_serv.sock;
+        server unix:INSTALL_DIR/tmp/citations_serv.sock;
     }
 
     server {
