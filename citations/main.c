@@ -2,69 +2,102 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <sys/signal.h>
+
+static const char * DEVNULL = "/dev/null";
+static const int EXIT_FAILURE = 1;
+
+// logging
+
+void log_message(const char* message)
+{
+    FILE * file = fopen("/tmp/main.log", "a");
+    fprintf(file, "%s\n", message);
+    fclose(file);
+    exit(0);
+}
+
+void signal_handler(int sig)
+{
+    switch (sig) {
+        case SIGTERM:
+            log_message("terminate (15) signal catched");
+            break;
+    }
+}
+
+// daemonization
+
+inline int reborn(const char* message)
+{
+    pid_t pid = fork();
+
+    if (pid == -1) {
+        printf("%s, errno = %d\n", message, errno);
+        return 1;
+    }
+
+    if (pid != 0) {
+        _exit(0);
+    }
+
+    return 0;
+}
+
 int daemonize()
 {
-    pid_t pid, sid;
+    int i;
 
-    pid = fork();
+    if (reborn("Daemonization failed: fork #1 failed") != 0) {
+        return 1;
+    } // exit parent
 
-    if (pid == -1) {
-        printf("Could not become a daemon: fork #1 failed, errno = %d\n", errno);
-        return 0;
+    if (setsid() == -1) {
+        printf("Daemonization failed: setsid failed, errno = %d\n", errno);
+        return 1;
+    } // change
+
+    if (reborn("Daemonization failed: fork #2 failed") != 0) {
+        return 1;
+    } // exit session leader
+
+    for (i = getdtablesize(); i >= 0; i--) {
+        close(i);
+    } // close all descriptors
+
+    umask(027); // create all files with 750 permission
+
+    chdir("/");
+
+    if ((stdin = fopen(DEVNULL, "a+")) == NULL) {
+        return 1;
     }
 
-    if (pid != 0) {
-        _exit(0); // exit parent
+    if ((stdout = fopen(DEVNULL, "w")) == NULL) {
+        return 1;
     }
 
-    sid = setsid();
-    if (sid == -1) {
-        printf("Could not become a daemon: setsid failed, errno = %d\n", errno);
-        return 0;
+    if ((stderr = fopen(DEVNULL, "w")) == NULL) {
+        return 1;
     }
 
-    // check fork for child
-    pid = fork();
-    if (pid == -1) {
-        printf("Could not become a daemon: fork #2 failed, errno = %d\n", errno);
-        return 0;
-    }
+    signal(SIGTERM, signal_handler);
 
-    if (pid != 0) {
-        _exit(0); // exit session leader
-    }
-
-    printf("I am a daemon\n");
-
-    while (1) {
-        sid++;
-    }
-
-    // for (int i = getdtablesize(); i--; ) {
-    //     close(i);
-    // }
-    // umask(0002); // disable: S_IWOTH
-    // chdir("/");
-
-    // const char *devnull = "/dev/null";
-    // stdin = fopen(devnull, "a+");
-    // if (stdin == NULL) {
-    //     return false;
-    // }
-    // stdout = fopen(devnull, "w");
-    // if (stdout == NULL) {
-    //     return false;
-    // }
-    // stderr = fopen(devnull, "w");
-    // if (stderr == NULL) {
-    //     return false;
-    // }
-    return 1;
+    return 0;
 }
+
+
 
 int main(int argc, char *argv[])
 {
-    int dem = daemonize();
-    printf("Demonize = %s\n", dem ? "true" : "false");
+    int count = 100000000;
+
+    if (daemonize() != 0)
+        return EXIT_FAILURE;
+
+    while (--count >= 0) {
+        sleep(100);
+    }
+
     return 0;
 }
