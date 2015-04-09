@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm *.tar.gz
-rm -r *_src
+rm -f *.tar.gz
+rm -fr *_src

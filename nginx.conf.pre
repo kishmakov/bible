@@ -1,12 +1,11 @@
 worker_processes  6;
 
-error_log  logs/error.log;
-pid        tmp/nginx.pid;
+error_log  BASE_DIR/logs/error.log;
+pid        BASE_DIR/tmp/nginx.pid;
 
 events {
     worker_connections  1024;
 }
-
 
 http {
     include       mime.types;
@@ -18,7 +17,7 @@ http {
     keepalive_timeout  65;
 
     upstream citations_serv {
-        server unix:INSTALL_DIR/tmp/citations_serv.sock;
+        server unix:BASE_DIR/tmp/citations_serv.sock;
     }
 
     server {
@@ -43,5 +42,5 @@ http {
     }
 
     log_format simple_format log_format defaultformat '[$time_local] "$request" $status $request_time $bytes_sent "$uri" "$args"';
-    access_log logs/access.log  simple_format;
+    access_log BASE_DIR/logs/access.log  simple_format;
 }

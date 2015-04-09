@@ -1,3 +1,3 @@
 #!/bin/sh
 
-kill `cat ./nginx/tmp/nginx.pid`
+kill `cat ./tmp/nginx.pid`

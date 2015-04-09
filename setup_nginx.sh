@@ -21,23 +21,22 @@ mv $PCRE pcre_src
 ###################################
 
 BASE_DIR=`pwd`
-INSTALL_DIR=$BASE_DIR/nginx
-
-mkdir -p $INSTALL_DIR/logs
-mkdir -p $INSTALL_DIR/tmp/fcgi
-touch $INSTALL_DIR/tmp/citations_serv.sock
+mkdir -p $BASE_DIR/logs
+mkdir -p $BASE_DIR/tmp/fcgi
+touch $BASE_DIR/tmp/citations_serv.sock
+touch $BASE_DIR/logs/access.log
 
 cd nginx_src && ./configure \
-    --prefix=$INSTALL_DIR \
-    --sbin-path=$INSTALL_DIR/sbin/nginx \
-    --conf-path=$INSTALL_DIR/conf/nginx.conf \
-    --error-log-path=$INSTALL_DIR/logs/error.log \
-    --http-log-path=$INSTALL_DIR/logs/access.log \
-    --pid-path=$INSTALL_DIR/tmp/nginx.pid \
-    --lock-path=$INSTALL_DIR/tmp/nginx.lock \
-    --http-fastcgi-temp-path=$INSTALL_DIR/tmp/fcgi \
-    --http-client-body-temp-path=$INSTALL_DIR/tmp/client_body \
-    --http-proxy-temp-path=$INSTALL_DIR/tmp/proxy \
+    --prefix=$BASE_DIR/nginx \
+    --sbin-path=$BASE_DIR/nginx/sbin/nginx \
+    --conf-path=$BASE_DIR/nginx/conf/nginx.conf \
+    --error-log-path=$BASE_DIR/logs/error.log \
+    --http-log-path=$BASE_DIR/logs/access.log \
+    --pid-path=$BASE_DIR/tmp/nginx.pid \
+    --lock-path=$BASE_DIR/tmp/nginx.lock \
+    --http-fastcgi-temp-path=$BASE_DIR/tmp/fcgi \
+    --http-client-body-temp-path=$BASE_DIR/tmp/client_body \
+    --http-proxy-temp-path=$BASE_DIR/tmp/proxy \
     --with-pcre=$BASE_DIR/pcre_src \
     --without-mail_pop3_module \
     --without-mail_imap_module \
@@ -54,5 +53,5 @@ cd nginx_src && ./configure \
     --without-http_browser_module
 
 make && make install && cd ..
-sed "s#INSTALL_DIR#$INSTALL_DIR#g" nginx.conf.pre > ./nginx/conf/nginx.conf
+sed "s#BASE_DIR#$BASE_DIR#g" nginx.conf.pre > ./nginx/conf/nginx.conf
 
