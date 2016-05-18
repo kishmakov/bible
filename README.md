@@ -1,2 +1,2 @@
 # bible
-Holy Bible with reversed citations by Saint Fathers.
+Framework for reversed citations.
