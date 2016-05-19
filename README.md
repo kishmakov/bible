@@ -69,44 +69,40 @@ Framework for reversed citations.
 
 ### NT - Novum Testamentum
 
-| StatN | Voluminis statuarii | Книги законополжительные
-|:------|---------------------|---------------
-| Mt    | secundum Matthæum   | Евангелие по Матфею
-| Mk    | secundum Marcum     | Евангелие по Марку
-| Lc    | secundum Lucam      | Евангелие по Луке
-| In    | secundum Ioannem    | Евангелие по Иоанну
+| StatN | Voluminis statuarii          | Книги законополжительные
+|:------|------------------------------|---------------
+| Mt    | Evangelium secundum Matthæum | Евангелие по Матфею
+| Mk    | Evangelium secundum Marcum   | Евангелие по Марку
+| Lc    | Evangelium secundum Lucam    | Евангелие по Луке
+| In    | Evangelium secundum Ioannem  | Евангелие по Иоанну
 
 | HistN | Voluminis historiarum | Книги исторические
 |:------|-----------------------|---------------
 | Act   | Actus                 | Деяния святых Апостолов
 
-| DocN | Voluminis doctrinae     | Книги учительные
-|:-----|-------------------------|---------------
-| Rom  | ad Romanos              | К римлянам
-| 1Cor | 1 ad Corinthios         | К коринфянам 1-е
-| 2Cor | 2 ad Corinthios         | К коринфянам 2-е
-| Gal  | ad Galatas              | К галатам
-
-
-
-Ephesians - Eph
-Philippians - Phil
-Colossians - Col
-1 Thessalonians - 1Thess
-2 Thessalonians - 2Thess
-1 Timothy - 1Tim
-2 Timothy - 2Tim
-Titus - Titus
-Philemon - Philemon
-Hebrews - Heb
-James - Jas
-1 Peter - 1Pet
-2 Peter - 2Pet
-1 John - 1Jn
-2 John - 2Jn
-3 John - 3Jn
-Jude - Jude
-
+| DocN   | Voluminis doctrinae   | Книги учительные
+|:-------|-----------------------|---------------
+| Rom    | ad Romanos            | К римлянам
+| 1Cor   | 1 ad Corinthios       | К коринфянам 1-е
+| 2Cor   | 2 ad Corinthios       | К коринфянам 2-е
+| Gal    | ad Galatas            | К галатам
+| Eph    | ad Ephesios           | К ефесянам
+| Phil   | ad Philippenses       | К филиппийцам
+| Col    | ad Colossenses        | К колоссянам
+| 1Thess | 1 ad Thessalonicenses | К фессалоникийцам 1-е
+| 2Thess | 2 ad Thessalonicenses | К фессалоникийцам 2-е
+| 1Tim   | 1 ad Timotheum        | К Тимофею 1-е
+| 2Tim   | 2 ad Timotheum        | К Тимофею 2-е
+| Tit    | ad Titum              | К Титу
+| Phil   | ad Philemonem         | К Филимону
+| Hebr   | ad Hebræos            | К евреям
+| Jac    | Jacobi                | Иакова
+| 1Pet   | 1 Petri               | 1-е Петра
+| 2Pet   | 2 Petri               | 2-е Петра
+| 1In    | 1 Ioannis             | 1-е Иоанна Богослова
+| 2In    | 2 Ioannis             | 2-е Иоанна Богослова
+| 3In    | 3 Ioannis             | 3-е Иоанна Богослова
+| Jd     | Judæ                  | Иуды
 
 | ProvN | Voluminis providum | Книги пророческие
 |:------|--------------------|---------------
