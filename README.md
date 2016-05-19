@@ -3,33 +3,39 @@ Framework for reversed citations.
 
 ## Abbreviations
 
-### VT - Vetus Testamentum
+### VT - Vetus Testamentum - Ветхий Завет
 
-#### Pent - Pentateuchum Mosi
+|Pent  | Pentateuchum Mosi | Пятикнижие Моиссея
+|:-----|-------------------|---------------
+| Gen  | Genesis           | Бытие
+| Ex   | Exodus            | Исход
+| Lev  | Leviticus         | Левит
+| Num  | Numeri            | Числа
+| Deut | Deuteronomium     | Второзаконие
 
-Gen  - Genesis
-Ex   - Exodus
-Lev  - Leviticus
-Num  - Numeri
-Deut - Deuteronomium
+|Hist   | Historiarum          | Книги исторические
+|:------|----------------------|---------------
+| Jos   | Josue                | Иисуса Навина
+| Jdcs  | Judices              | Судей
+| Ruth  | Ruth                 | Руфи
+| 1Reg  | 1 Regum (1 Samuelis) | 1-я Царств
+| 2Reg  | 2 Regum (2 Samuelis) | 2-я Царств
+| 3Reg  | 3 Regum              | 3-я Царств
+| 4Reg  | 4 Regum              | 4-я Царств
+| 1Par  | 1 Paralipomenon      | 1-я Паралипоменон
+| 2Par  | 2 Paralipomenon      | 2-я Паралипоменон
+| 1Esd  | 1 Esdræ              | 1-я Ездры
+| 2Esd  | 2 Esdræ (Nehemiæ)    | 2-я Ездры
+| 3Esd  | 3 Esdræ              | 3-я Ездры
+| 4Esd  | 4 Esdræ              | 4-я Ездры
+| Tob   | Tobiæ                | Товита
+| Jdth  | Judith               | Иудифи
+| Esth  | Esther               | Эсфири
+| 1Mach | 1 Machabæorum        | 1-я Маккавеев
+| 2Mach | 2 Machabæorum        | 2-я Маккавеев
+| 3Mach | 3 Machabæorum        | 3-я Маккавеев
+| 4Mach | 4 Machabæorum        | 4-я Маккавеев
 
-Jos  - Josue
-Jdcs - Judices
-Ruth - Ruth
-
-1Reg - 1 Regum (1 Samuelis)
-2Reg - 2 Regum (2 Samuelis)
-3Reg - 3 Regum
-4Reg - 4 Regum
-
-1Par - 1 Paralipomenon
-2Par - 2 Paralipomenon
-
-1Esd - 1 Esdræ
-2Esd - 2 Esdræ (Nehemiæ)
-Tob  - Tobiæ
-Jdth - Judith
-Esth - Esther
 Job  - Job
 
 Ps   - Psalmi
@@ -59,11 +65,6 @@ Soph - Sophoniae
 Agg  - Aggæi
 Zach - Zachariæ
 Mal  - Malachiæ
-
-1Mach - 1 Machabæorum
-2Mach - 2 Machabæorum
-3Mach - 3 Machabæorum
-4Mach - 4 Machabæorum
 
 ### NT - Novum Testamentum
 
