@@ -72,7 +72,7 @@ Framework for reversed citations.
 | StatN | Voluminis statuarii          | Книги законополжительные
 |:------|------------------------------|---------------
 | Mt    | Evangelium secundum Matthæum | Евангелие по Матфею
-| Mk    | Evangelium secundum Marcum   | Евангелие по Марку
+| Mc    | Evangelium secundum Marcum   | Евангелие по Марку
 | Lc    | Evangelium secundum Lucam    | Евангелие по Луке
 | In    | Evangelium secundum Ioannem  | Евангелие по Иоанну
 

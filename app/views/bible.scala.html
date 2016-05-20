@@ -1,14 +1,11 @@
-@(message: String)
+@(headerVT: Header, headerNT: Header)
 
-<!DOCTYPE html>
+@head = {
+  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/index.css")"/>
+  <script src="@routes.Assets.at("javascripts/webpack/main.js")"></script>
+}
 
-<html>
-  <head>
-    <title>@message</title>
-    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-  </head>
-  <body>
-  @message
-  </body>
-</html>
+@main("JetChat", head) {
+  <div>@{headerVT.name}</div>
+  <div>@{headerNT.name}</div>
+}
