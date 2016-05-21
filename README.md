@@ -3,7 +3,16 @@ Framework for reversed citations.
 
 ## Abbreviations
 
-### VT - Vetus Testamentum - Ветхий Завет
+### Technical
+
+| Abbreviation | Latina            | Русский
+|:-------------|-------------------|---------
+| Bib          | Biblia            | Библия
+| VT           | Vetus Testamentum | Ветхий Завет
+| NT           | Novum Testamentum | Новый Завет
+| Incan        | Incanonicale      | Неканоническая
+
+### VT
 
 | StatV | Voluminis statuarii | Книги законополжительные
 |:------|---------------------|---------------
@@ -67,7 +76,7 @@ Framework for reversed citations.
 | Zach  | Zachariæ           | Захарии
 | Mal   | Malachiæ           | Малахии
 
-### NT - Novum Testamentum
+### NT
 
 | StatN | Voluminis statuarii          | Книги законополжительные
 |:------|------------------------------|---------------
