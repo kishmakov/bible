@@ -87,14 +87,14 @@ Framework for reversed citations.
 | 2Cor   | 2 ad Corinthios       | К коринфянам 2-е
 | Gal    | ad Galatas            | К галатам
 | Eph    | ad Ephesios           | К ефесянам
-| Phil   | ad Philippenses       | К филиппийцам
+| Php    | ad Philippenses       | К филиппийцам
 | Col    | ad Colossenses        | К колоссянам
 | 1Thess | 1 ad Thessalonicenses | К фессалоникийцам 1-е
 | 2Thess | 2 ad Thessalonicenses | К фессалоникийцам 2-е
 | 1Tim   | 1 ad Timotheum        | К Тимофею 1-е
 | 2Tim   | 2 ad Timotheum        | К Тимофею 2-е
 | Tit    | ad Titum              | К Титу
-| Phil   | ad Philemonem         | К Филимону
+| Phm    | ad Philemonem         | К Филимону
 | Hebr   | ad Hebræos            | К евреям
 | Jac    | Jacobi                | Иакова
 | 1Pet   | 1 Petri               | 1-е Петра
