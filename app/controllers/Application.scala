@@ -18,9 +18,7 @@ class Application @Inject()(val headersDAO: HeadersDAO
   def bible = Action.async {
     val headers = headersDAO.findByLocale("ru_RU")
     headers.map { result =>
-      val headerVT = result.filter(_.code == "VT").head
-      val headerNT = result.filter(_.code == "NT").head
-      Ok(views.html.bible(headerVT, headerNT))
+      Ok(views.html.bible(result map (h => h.code -> h) toMap))
     }
   }
 

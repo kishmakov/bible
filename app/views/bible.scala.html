@@ -1,11 +1,92 @@
-@(headerVT: Header, headerNT: Header)
+@(headers: Map[String, Header])
 
 @head = {
   <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
+  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")"/>
   <script src="@routes.Assets.at("javascripts/webpack/main.js")"></script>
 }
 
+@reference(header: Header) = @{
+  val text = if (header.name == header.modernName)
+    header.name else header.name + " (" + header.modernName + ")"
+
+  <a>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
+}
+
 @main("JetChat", head) {
-  <div>@{headerVT.name}</div>
-  <div>@{headerNT.name}</div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-10 col-sm-10">
+        <h1 class="text-center">@{headers("Bib").name}</h1>
+      </div>
+      <div class="col-md-1 col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-sm-1"></div>
+      <div class="col-md-4 col-sm-5">
+        <h2>@{headers("VT").name}</h2>
+
+        <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").modernName}</small></h3>
+
+
+        @reference(headers("Gen"))
+        @reference(headers("Ex"))
+        @reference(headers("Lev"))
+        @reference(headers("Num"))
+        @reference(headers("Deut"))
+
+        <h3 class="text-muted">@{headers("HistV").name}</h3>
+      </div>
+      <div class="col-md-4 col-sm-5">
+        <h2>@{headers("NT").name}</h2>
+
+        <h3 class="text-muted">@{headers("StatN").name}<br><small>@{headers("StatN").modernName}</small></h3>
+
+        @reference(headers("Mt"))
+        @reference(headers("Mc"))
+        @reference(headers("Lc"))
+        @reference(headers("In"))
+
+        <h3 class="text-muted">@{headers("HistN").name}</h3>
+        @reference(headers("Act"))
+
+        <h3 class="text-muted">@{headers("DocN").name}</h3>
+        @reference(headers("Jac"))
+        <br/>
+        @reference(headers("1Pet"))
+        @reference(headers("2Pet"))
+        <br/>
+        @reference(headers("1In"))
+        @reference(headers("2In"))
+        @reference(headers("3In"))
+        @reference(headers("Jd"))
+        <br/>
+        @reference(headers("Rom"))
+        <br/>
+        @reference(headers("1Cor"))
+        @reference(headers("2Cor"))
+        <br/>
+        @reference(headers("Gal"))
+        @reference(headers("Eph"))
+        @reference(headers("Php"))
+        @reference(headers("Col"))
+        <br/>
+        @reference(headers("1Thess"))
+        @reference(headers("2Thess"))
+        <br/>
+        @reference(headers("1Tim"))
+        @reference(headers("2Tim"))
+        <br/>
+        @reference(headers("Tit"))
+        @reference(headers("Phm"))
+        @reference(headers("Hebr"))
+
+        <h3 class="text-muted">@{headers("ProvN").name}</h3>
+        @reference(headers("Apoc"))
+
+      </div>
+      <div class="col-md-2 col-sm-1"></div>
+    </div>
+  </div>
 }
