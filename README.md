@@ -55,26 +55,27 @@ Framework for reversed citations.
 | Sap  | Sapientiæ               | Премудрости Соломона
 | Sir  | Ecclesiasticus (Sirach) | Премудрости Иисуса, сына Сирахова
 
-| ProvV | Voluminis providum | Книги пророческие
-|:------|--------------------|---------------
-| Isa   | Isaiæ              | Исаии
-| Jer   | Jeremiæ            | Иеремии
-| Ezch  | Ezechielis         | Иезекииля
-| Dan   | Danielis           | Даниила
-| Lam   | Lamentationes      | Плач Иеремии
-| Bar   | Baruch             | Варуха
-| Osee  | Osee               | Осии
-| Joel  | Joel               | Иoиля
-| Am    | Amos               | Амоса
-| Abd   | Abdiæ              | Авдия
-| Jon   | Jonæ               | Ионы
-| Mic   | Michææ             | Михея
-| Nah   | Nahum              | Наума
-| Hab   | Habacuc            | Аввакума
-| Soph  | Sophoniae          | Софонии
-| Agg   | Aggæi              | Аггея
-| Zach  | Zachariæ           | Захарии
-| Mal   | Malachiæ           | Малахии
+| ProvV | Voluminis providum  | Книги пророческие
+|:------|---------------------|---------------
+| Isa   | Isaiæ               | Исаии
+| Jer   | Jeremiæ             | Иеремии
+| Ezch  | Ezechielis          | Иезекииля
+| Dan   | Danielis            | Даниила
+| Lam   | Lamentationes       | Плач Иеремии
+| EJer  | Epistola ex Jeremiæ | Послание Иеремии
+| Bar   | Baruch              | Варуха
+| Osee  | Osee                | Осии
+| Joel  | Joel                | Иoиля
+| Am    | Amos                | Амоса
+| Abd   | Abdiæ               | Авдия
+| Jon   | Jonæ                | Ионы
+| Mic   | Michææ              | Михея
+| Nah   | Nahum               | Наума
+| Hab   | Habacuc             | Аввакума
+| Soph  | Sophoniae           | Софонии
+| Agg   | Aggæi               | Аггея
+| Zach  | Zachariæ            | Захарии
+| Mal   | Malachiæ            | Малахии
 
 ### NT
 

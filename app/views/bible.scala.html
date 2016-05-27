@@ -6,9 +6,9 @@
   <script src="@routes.Assets.at("javascripts/webpack/main.js")"></script>
 }
 
-@reference(header: Header) = @{
-  val text = if (header.name == header.modernName)
-    header.name else header.name + " (" + header.modernName + ")"
+@reference(header: Header, suffix: String = "") = @{
+  val text = (if (header.name == header.modernName)
+    header.name else header.name + " (" + header.modernName + ")") + suffix
 
   <a>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
 }
@@ -29,7 +29,6 @@
 
         <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").modernName}</small></h3>
 
-
         @reference(headers("Gen"))
         @reference(headers("Ex"))
         @reference(headers("Lev"))
@@ -37,6 +36,64 @@
         @reference(headers("Deut"))
 
         <h3 class="text-muted">@{headers("HistV").name}</h3>
+
+        @reference(headers("Jos"))
+        @reference(headers("Jdcs"))
+        @reference(headers("Ruth"))
+        <br/>
+        @reference(headers("1Reg"))
+        @reference(headers("2Reg"))
+        @reference(headers("3Reg"))
+        @reference(headers("4Reg"))
+        <br/>
+        @reference(headers("1Par"))
+        @reference(headers("2Par"))
+        <br/>
+        @reference(headers("1Esd"))
+        @reference(headers("2Esd"))
+        @reference(headers("3Esd"), "*")
+        @reference(headers("4Esd"), "*")
+        <br/>
+        @reference(headers("Tob"), "*")
+        @reference(headers("Jdth"), "*")
+        @reference(headers("Esth"))
+        <br/>
+        @reference(headers("1Mach"), "*")
+        @reference(headers("2Mach"), "*")
+        @reference(headers("3Mach"), "*")
+        @reference(headers("4Mach"), "*")
+
+        <h3 class="text-muted">@{headers("DocV").name}</h3>
+        @reference(headers("Job"))
+        @reference(headers("Ps"))
+        @reference(headers("Prov"))
+        @reference(headers("Ecc"))
+        @reference(headers("CC"))
+        @reference(headers("Sap"), "*")
+        @reference(headers("Sir"), "*")
+
+        <h3 class="text-muted">@{headers("ProvV").name}</h3>
+        @reference(headers("Isa"))
+        @reference(headers("Jer"))
+        @reference(headers("Ezch"))
+        @reference(headers("Dan"))
+        <br/>
+        @reference(headers("Lam"))
+        @reference(headers("Bar"), "*")
+        @reference(headers("EJer"), "*")
+        <br/>
+        @reference(headers("Osee"))
+        @reference(headers("Joel"))
+        @reference(headers("Am"))
+        @reference(headers("Abd"))
+        @reference(headers("Jon"))
+        @reference(headers("Mic"))
+        @reference(headers("Nah"))
+        @reference(headers("Hab"))
+        @reference(headers("Soph"))
+        @reference(headers("Agg"))
+        @reference(headers("Zach"))
+        @reference(headers("Mal"))
       </div>
       <div class="col-md-4 col-sm-5">
         <h2>@{headers("NT").name}</h2>
@@ -90,3 +147,4 @@
     </div>
   </div>
 }
+
