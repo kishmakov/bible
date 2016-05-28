@@ -4,7 +4,8 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /bible/                     controllers.Application.bible
+GET     /bible/                     controllers.Application.bibleBooks
+GET     /bible/:bookCode/:chapter   controllers.Application.chapter(bookCode: String, chapter: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

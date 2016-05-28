@@ -10,17 +10,18 @@
   val text = (if (header.name == header.modernName)
     header.name else header.name + " (" + header.modernName + ")") + suffix
 
-  <a>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
+  <a href={"/bible/" + header.code + "/1"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
 }
 
 @main("JetChat", head) {
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-1 col-sm-1"></div>
-      <div class="col-md-10 col-sm-10">
+      <div class="col-md-2 col-sm-1"></div>
+      <div class="col-md-8 col-sm-10">
         <h1 class="text-center">@{headers("Bib").name}</h1>
+        <hr/>
       </div>
-      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-2 col-sm-1"></div>
     </div>
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
@@ -141,7 +142,14 @@
 
         <h3 class="text-muted">@{headers("ProvN").name}</h3>
         @reference(headers("Apoc"))
-
+      </div>
+      <div class="col-md-2 col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-sm-1"></div>
+      <div class="col-md-8 col-sm-10">
+        <hr/>
+        <p class="text-muted">* @{headers("Incan").name}</p>
       </div>
       <div class="col-md-2 col-sm-1"></div>
     </div>
