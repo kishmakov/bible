@@ -1,0 +1,24 @@
+@(verses: Seq[Verse])
+
+@head = {
+  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
+  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")"/>
+  <script src="@routes.Assets.at("javascripts/webpack/main.js")"></script>
+}
+
+@main("Chapter", head) {
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 col-sm-1"></div>
+      <div class="col-md-8 col-sm-10">
+        <hr/>
+        @for(Verse(_, num, text, _) <- verses) {
+          <p>@{num}: @{text}</p>
+        }
+        <hr/>
+      </div>
+      <div class="col-md-2 col-sm-1"></div>
+    </div>
+  </div>
+}
+

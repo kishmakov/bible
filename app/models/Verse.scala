@@ -35,8 +35,8 @@ class VersesDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
 
   import driver.api._
 
-  def findByLang(lang: String): Future[Seq[Verse]] = {
-    db.run(allVerses.filter(_.lang === lang).result)
+  def findByLangBookChapter(lang: String, book: String, chapter: Int): Future[Seq[Verse]] = {
+    db.run(allVerses.filter(v => v.lang === lang && v.book === book && v.chapter === chapter ).result)
   }
 }
 
