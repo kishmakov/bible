@@ -15,10 +15,10 @@ class Application @Inject()(val headersDAO: HeadersDAO
     Ok(views.html.index("Your new application is ready."))
   }
 
-  def bibleBooks = Action.async {
+  def bible = Action.async {
     val headers = headersDAO.findByLocale("ru_RU")
     headers.map { result =>
-      Ok(views.html.bibleBooks(result map (h => h.code -> h) toMap))
+      Ok(views.html.bible(result map (h => h.code -> h) toMap))
     }
   }
 
