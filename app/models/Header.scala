@@ -38,5 +38,9 @@ class HeadersDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
   def findByLocale(locale: String): Future[Seq[Header]] = {
     db.run(allHeaders.filter(_.locale === locale).result)
   }
+
+  def findByLocaleCode(locale: String, code: String): Future[Option[Header]] = {
+    db.run(allHeaders.filter(h => h.locale === locale && h.code === code).result.headOption)
+  }
 }
 

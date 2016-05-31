@@ -1,11 +1,5 @@
 @(headers: Map[String, Header])
 
-@head = {
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")"/>
-  <script src="@routes.Assets.at("javascripts/webpack/main.js")"></script>
-}
-
 @reference(header: Header, suffix: String = "") = @{
   val text = (if (header.name == header.modernName)
     header.name else header.name + " (" + header.modernName + ")") + suffix
@@ -13,7 +7,7 @@
   <a href={"/chapter/" + header.code + "/1"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
 }
 
-@main("Bible", head) {
+@main("Bible") {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>

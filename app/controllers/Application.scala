@@ -24,9 +24,13 @@ class Application @Inject()(val headersDAO: HeadersDAO,
   }
 
   def chapter(bookCode: String, chapter: Int) = Action.async {
-    val verses = versesDAO.findByLangBookChapter("ru", bookCode, chapter)
-    verses map { result =>
-      Ok(views.html.chapter(result.sortWith(_.verse < _.verse)))
+    val result = headersDAO.findByLocaleCode("ru_RU", bookCode).
+      zip(versesDAO.findByLangBookChapter("ru", bookCode, chapter))
+
+    result map { _ match {
+        case (Some(h), vs) => Ok(views.html.chapter(h, vs.sortWith(_.verse < _.verse)))
+        case _ => Ok(views.html.index("There are some problems on server. Try to refresh page later."))
+      }
     }
   }
 
