@@ -1,12 +1,22 @@
-@(header: Header, verses: Seq[Verse])
+@(chapter: Int, header: Header, verses: Seq[Verse])
 
 @main("Chapter") {
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-2 col-sm-1 text-center">
+        <a class="lead"><h2>#@{chapter - 1}</h2></a>
+      </div>
+      <div class="col-md-8 col-sm-10">
+        <h2>@{header.name} #@{chapter}</h2>
+        <hr/>
+      </div>
+      <div class="col-md-2 col-sm-1">
+        <a class="lead"><h2>#@{chapter + 1}</h2></a>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
-        <h2>@{header.name}</h2>
-        <hr/>
         @for(Verse(_, num, text, _) <- verses) {
           <p>@{num}: @{text}</p>
         }

@@ -28,7 +28,7 @@ class Application @Inject()(val headersDAO: HeadersDAO,
       zip(versesDAO.findByLangBookChapter("ru", bookCode, chapter))
 
     result map { _ match {
-        case (Some(h), vs) => Ok(views.html.chapter(h, vs.sortWith(_.verse < _.verse)))
+        case (Some(h), vs) => Ok(views.html.chapter(chapter, h, vs.sortWith(_.verse < _.verse)))
         case _ => Ok(views.html.index("There are some problems on server. Try to refresh page later."))
       }
     }
