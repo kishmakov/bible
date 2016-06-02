@@ -1,17 +1,27 @@
-@(chapter: Int, header: Header, verses: Seq[Verse])
+@(chapter: Int, header: Header, book: Book, verses: Seq[Verse])
+
+  @reference(href: String, title: String) = @{
+      <a class="lead" href={href}><h2>{title}</h2></a>
+  }
 
 @main("Chapter") {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1 text-center">
-        <a class="lead"><h2>#@{chapter - 1}</h2></a>
+        @{if (chapter > 1)
+          reference("/chapter/" + book.bookId + "/" + (chapter - 1).toString(), "#" + (chapter - 1).toString())
+        else
+          reference("/chapter/" + book.prevId + "/" + book.prevChapters, book.prevId)}
       </div>
       <div class="col-md-8 col-sm-10">
         <h2>@{header.name} #@{chapter}</h2>
         <hr/>
       </div>
       <div class="col-md-2 col-sm-1">
-        <a class="lead"><h2>#@{chapter + 1}</h2></a>
+        @{if (chapter < book.chapters)
+          reference("/chapter/" + book.bookId + "/" + (chapter + 1).toString(), "#" + (chapter + 1).toString())
+        else
+          reference("/chapter/" + book.nextId + "/1", book.nextId)}
       </div>
     </div>
     <div class="row">

@@ -1,11 +1,11 @@
 @(headers: Map[String, Header])
 
-@reference(header: Header, suffix: String = "") = @{
-  val text = (if (header.name == header.modernName)
-    header.name else header.name + " (" + header.modernName + ")") + suffix
+  @reference(header: Header, suffix: String = "") = @{
+    val text = (if (header.name == header.modernName)
+      header.name else header.name + " (" + header.modernName + ")") + suffix
 
-  <a href={"/chapter/" + header.code + "/1"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
-}
+    <a href={"/chapter/" + header.code + "/1"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
+  }
 
 @main("Bible") {
   <div class="container-fluid">

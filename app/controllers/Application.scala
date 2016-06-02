@@ -30,7 +30,7 @@ class Application @Inject()(val headersDAO: HeadersDAO,
 
     result map { _ match {
         case ((book, header), verses) =>
-          Ok(views.html.chapter(chapter, header, verses.sortWith(_.verse < _.verse)))
+          Ok(views.html.chapter(chapter, header, book, verses.sortWith(_.verse < _.verse)))
         case _ =>
           Ok(views.html.index("There are some problems on server. Try to refresh page later."))
       }
