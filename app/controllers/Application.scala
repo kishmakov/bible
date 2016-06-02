@@ -2,13 +2,14 @@ package controllers
 
 import javax.inject.{Singleton, Inject}
 
-import models.{HeadersDAO, VersesDAO}
+import models.{BooksDAO, HeadersDAO, VersesDAO}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class Application @Inject()(val headersDAO: HeadersDAO,
+                            val booksDAO: BooksDAO,
                             val versesDAO: VersesDAO
                            ) extends Controller {
 
@@ -23,13 +24,15 @@ class Application @Inject()(val headersDAO: HeadersDAO,
     }
   }
 
-  def chapter(bookCode: String, chapter: Int) = Action.async {
-    val result = headersDAO.findByLocaleCode("ru_RU", bookCode).
-      zip(versesDAO.findByLangBookChapter("ru", bookCode, chapter))
+  def chapter(bookId: String, chapter: Int) = Action.async {
+    val result = booksDAO.findByIdLocale(bookId, "ru_RU").
+      zip(versesDAO.findByLangBookChapter("ru", bookId, chapter))
 
     result map { _ match {
-        case (Some(h), vs) => Ok(views.html.chapter(chapter, h, vs.sortWith(_.verse < _.verse)))
-        case _ => Ok(views.html.index("There are some problems on server. Try to refresh page later."))
+        case ((book, header), verses) =>
+          Ok(views.html.chapter(chapter, header, verses.sortWith(_.verse < _.verse)))
+        case _ =>
+          Ok(views.html.index("There are some problems on server. Try to refresh page later."))
       }
     }
   }

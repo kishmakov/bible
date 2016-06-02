@@ -18,12 +18,11 @@ trait HeaderComponent extends HasDatabaseConfigProvider[JdbcProfile] {
 
   class HeaderTable(tag: Tag) extends Table[Header](tag, "headers") {
     def locale     = column[String]("locale")
-    def code       = column[String]("code")
+    def bookId     = column[String]("book_id")
     def name       = column[String]("name")
     def modernName = column[String]("modern_name")
 
-    def * = (code, name, modernName) <> (Header.tupled, Header.unapply)
-
+    def * = (bookId, name, modernName) <> (Header.tupled, Header.unapply)
   }
 
   val allHeaders = TableQuery[HeaderTable]
@@ -39,8 +38,8 @@ class HeadersDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
     db.run(allHeaders.filter(_.locale === locale).result)
   }
 
-  def findByLocaleCode(locale: String, code: String): Future[Option[Header]] = {
-    db.run(allHeaders.filter(h => h.locale === locale && h.code === code).result.headOption)
+  def findByLocaleCode(locale: String, code: String): Future[Header] = {
+    db.run(allHeaders.filter(h => h.locale === locale && h.bookId === code).result.head)
   }
 }
 
