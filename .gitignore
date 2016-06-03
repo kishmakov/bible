@@ -1,6 +1,7 @@
 logs
 project/project
 project/target
+node_modules
 target
 tmp
 .history
@@ -14,4 +15,4 @@ dist
 /RUNNING_PID
 /.settings
 
-    
+
