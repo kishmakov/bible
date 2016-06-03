@@ -3,18 +3,21 @@ import fetch from 'isomorphic-fetch'
 
 function counter(state = {}, action) {
     switch (action.type) {
+        case 'RESET':
+            state[action.verse] = {
+                info: undefined,
+                open: false,
+                wrap: action.wrap,
+                top: action.top,
+                bottom: action.wrap + ":bottom"
+            };
+            return state;
+        case 'FILL':
+            state[action.verse].info = action.info;
+            return state;
         case 'TOGGLE':
-            if (!state[action.verse]) {
-                state[action.verse] = {
-                    info: undefined,
-                    open: false,
-                    wrap: action.wrap,
-                    top: action.top,
-                    bottom: action.wrap + ":bottom"
-                };
-            }
             state[action.verse].open = !state[action.verse].open;
-            return { ...state };
+            return state;
         default:
          return state
     }
@@ -36,9 +39,9 @@ store.subscribe(() => {
             : "specifiable-verse");
 
         if (state[verseId].open && !wrap.contains(bottom)) {
-            var bottom = document.createElement("div");
+            bottom = document.createElement("div");
             bottom.id = state[verseId].bottom;
-            bottom.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
+            bottom.appendChild(document.createTextNode(JSON.stringify(state[verseId].info)));
             wrap.appendChild(bottom);
         }
 
@@ -49,11 +52,17 @@ store.subscribe(() => {
 });
 
 _global.toggle = function (verse, wrap, top) {
-    store.dispatch({
-        type: 'TOGGLE',
-        verse: verse,
-        wrap: wrap,
-        top: top});
+    if (!store.getState()[verse]) {
+        store.dispatch({type: 'RESET', verse: verse, wrap: wrap, top: top});
+        fetch(`/specification/${_global.book}/${_global.chapter}/${verse}`)
+            .then(response => response.json())
+            .then(json => {
+                store.dispatch({type: 'FILL', verse: verse, info: json});
+                store.dispatch({type: 'TOGGLE', verse: verse});
+            });
+    } else {
+        store.dispatch({type: 'TOGGLE', verse: verse});
+    }
 };
 
 

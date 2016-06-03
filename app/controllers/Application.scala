@@ -3,6 +3,7 @@ package controllers
 import javax.inject.{Singleton, Inject}
 
 import models.{BooksDAO, HeadersDAO, VersesDAO}
+import play.api.libs.json.{JsNumber, JsString, JsObject, Json}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -37,4 +38,11 @@ class Application @Inject()(val headersDAO: HeadersDAO,
     }
   }
 
+  def specification(book: String, chapter: Int, verse: Int) = Action {
+    Ok(Json.toJson(JsObject(Seq(
+      "book" -> JsString(book),
+      "chapter" -> JsNumber(chapter),
+      "verse" -> JsNumber(verse)
+    ))))
+  }
 }
