@@ -8,6 +8,8 @@ create table `verses` (
     `text` VARCHAR(500) not null,
     `specifiable` BOOLEAN default true);
 
+alter table `verses` add primary key (`lang`, `book_id`, `chapter`, `verse`);
+
 # --- !Downs
 
 drop table `verses`;

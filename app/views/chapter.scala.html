@@ -27,8 +27,12 @@
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
-        @for(Verse(_, num, text, _) <- verses) {
-          <p>@{num}: @{text}</p>
+        @for(Verse(_, num, text, specifiable) <- verses) {
+          @if(specifiable) {
+            <p><strong>@{num}:</strong> @{text}</p>
+          } else {
+            <p><em class="text-muted">@{num}:</em> @{text}</p>
+          }
         }
         <hr/>
       </div>

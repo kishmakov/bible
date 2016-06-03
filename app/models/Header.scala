@@ -9,7 +9,8 @@ import scala.concurrent.Future
 
 case class Header(code: String,
                   name: String,
-                  modernName: String)
+                  modernName: String,
+                  presented: Boolean)
 
 trait HeaderComponent extends HasDatabaseConfigProvider[JdbcProfile] {
   protected val driver: JdbcProfile
@@ -21,8 +22,9 @@ trait HeaderComponent extends HasDatabaseConfigProvider[JdbcProfile] {
     def bookId     = column[String]("book_id")
     def name       = column[String]("name")
     def modernName = column[String]("modern_name")
+    def presented  = column[Boolean]("presented")
 
-    def * = (bookId, name, modernName) <> (Header.tupled, Header.unapply)
+    def * = (bookId, name, modernName, presented) <> (Header.tupled, Header.unapply)
   }
 
   val allHeaders = TableQuery[HeaderTable]
