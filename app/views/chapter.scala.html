@@ -13,15 +13,21 @@
   }
 
   @verse(num: Int, text: String, specifiable: Boolean) = @{
-    val id = "verse:" + num.toString()
+    val wrap = "verse:" + num.toString()
+    val top = wrap + ":top"
 
     if(specifiable) {
-      <div id={id} onclick={s"_global.store.dispatch({ type: 'TOGGLE', verseId: '$id'})"} class="specifiable-verse">
-        <p><strong class="text-success">{num}:</strong> {text}</p>
+      <div id={wrap}>
+        <div id={top} onclick={s"_global.store.dispatch({ type: 'TOGGLE', " +
+                s"verse: '$num', wrap: '$wrap', top: '$top'})"} class="specifiable-verse">
+          <p><strong class="text-success">{num}:</strong> {text}</p>
+        </div>
       </div>
     } else {
-      <div id={id}>
-        <p><em class="text-muted">{num}:</em> {text}</p>
+      <div>
+        <div>
+          <p><em class="text-muted">{num}:</em> {text}</p>
+        </div>
       </div>
     }
   }

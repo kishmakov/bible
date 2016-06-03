@@ -5,7 +5,8 @@
   "author": "Kirill Shmakov",
   "dependencies": {
     "redux": "~3.5.2",
-    "webpack": "~1.13.1"
+    "webpack": "~1.13.1",
+    "isomorphic-fetch": "~2.2.1"
   },
   "devDependencies": {
     "babel-core": "^5.8.25",

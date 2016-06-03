@@ -1,4 +1,5 @@
 import { createStore } from 'redux'
+import fetch from 'isomorphic-fetch'
 
 const INITIAL_STATE = {
 };
@@ -6,17 +7,16 @@ const INITIAL_STATE = {
 function counter(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'TOGGLE':
-            if (!state[action.verseId]) {
-                state[action.verseId] = {
-                    info: null,
-                    open: false
+            if (!state[action.verse]) {
+                state[action.verse] = {
+                    info: undefined,
+                    open: false,
+                    wrap: action.wrap,
+                    top: action.top,
+                    bottom: action.wrap + ":bottom"
                 };
             }
-            state[action.verseId].open = !state[action.verseId].open;
-            document.getElementById(action.verseId).className = state[action.verseId].open
-                ? "specified-verse"
-                : "specifiable-verse";
-
+            state[action.verse].open = !state[action.verse].open;
             return { ...state };
         default:
          return state
@@ -27,12 +27,33 @@ function counter(state = INITIAL_STATE, action) {
 // Its API is { subscribe, dispatch, getState }.
 let store = createStore(counter);
 
-// You can use subscribe() to update the UI in response to state changes.
-// Normally you’d use a view binding library (e.g. React Redux) rather than subscribe() directly.
-// However it can also be handy to persist the current state in the localStorage.
+store.subscribe(() => {
+    const state = store.getState();
+    for (var verseId in state) {
+        var wrap   = document.getElementById(state[verseId].wrap);
+        var top    = document.getElementById(state[verseId].top);
+        var bottom = document.getElementById(state[verseId].bottom);
 
-store.subscribe(() =>
-console.log(JSON.stringify(store.getState()))
-)
+        top.className = (state[verseId].open
+            ? "specified-verse"
+            : "specifiable-verse");
+
+        if (state[verseId].open && !wrap.contains(bottom)) {
+            var bottom = document.createElement("div");
+            bottom.id = state[verseId].bottom;
+            bottom.appendChild(document.createTextNode('The man who mistook his wife for a hat'));
+            wrap.appendChild(bottom);
+        }
+
+        if (!state[verseId].open && wrap.contains(bottom)) {
+            wrap.removeChild(bottom);
+        }
+    }
+});
 
 _global.store = store;
+_global.fetch = function (verseId) {
+
+};
+
+
