@@ -6,5 +6,12 @@
 .specified-verse {
     cursor: pointer;
     background-color: #d9edf7;
+    border-radius: 5px;
+}
+
+.specification {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 2px solid #d9edf7;
 }
 

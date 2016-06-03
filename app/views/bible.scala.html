@@ -1,10 +1,10 @@
 @(headers: Map[String, Header])
 
   @reference(header: Header, suffix: String = "") = @{
-    val text = (if (header.name == header.modernName)
-      header.name else header.name + " (" + header.modernName + ")") + suffix
+    val text = (if (header.name == header.clarification.getOrElse(header.name))
+      header.name else header.name + " (" + header.clarification.get + ")") + suffix
 
-    if (header.presented)
+    if (header.presented.getOrElse(false))
       <a href={"/chapter/" + header.code + "/1"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
     else
       <span>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</span>
@@ -25,7 +25,7 @@
       <div class="col-md-4 col-sm-5">
         <h2>@{headers("VT").name}</h2>
 
-        <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").modernName}</small></h3>
+        <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").clarification}</small></h3>
 
         @reference(headers("Gen"))
         @reference(headers("Ex"))
@@ -96,7 +96,7 @@
       <div class="col-md-4 col-sm-5">
         <h2>@{headers("NT").name}</h2>
 
-        <h3 class="text-muted">@{headers("StatN").name}<br><small>@{headers("StatN").modernName}</small></h3>
+        <h3 class="text-muted">@{headers("StatN").name}<br><small>@{headers("StatN").clarification}</small></h3>
 
         @reference(headers("Mt"))
         @reference(headers("Mc"))

@@ -41,6 +41,7 @@ store.subscribe(() => {
         if (state[verseId].open && !wrap.contains(bottom)) {
             bottom = document.createElement("div");
             bottom.id = state[verseId].bottom;
+            bottom.classList.add("specification")
             bottom.appendChild(document.createTextNode(JSON.stringify(state[verseId].info)));
             wrap.appendChild(bottom);
         }
