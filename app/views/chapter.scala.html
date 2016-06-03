@@ -4,7 +4,29 @@
       <a class="lead" href={href}><h2>{title}</h2></a>
   }
 
-@main("Chapter") {
+  @head = {
+    <script>
+            var _global = {};
+    </script>
+    <script src="@routes.Assets.at("javascripts/main.js")"></script>
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
+  }
+
+  @verse(num: Int, text: String, specifiable: Boolean) = @{
+    val id = "verse:" + num.toString()
+
+    if(specifiable) {
+      <div id={id} onclick={s"_global.store.dispatch({ type: 'TOGGLE', verseId: '$id'})"} class="specifiable-verse">
+        <p><strong class="text-success">{num}:</strong> {text}</p>
+      </div>
+    } else {
+      <div id={id}>
+        <p><em class="text-muted">{num}:</em> {text}</p>
+      </div>
+    }
+  }
+
+@main("Chapter", head) {
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1 text-center">
@@ -28,11 +50,7 @@
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
         @for(Verse(_, num, text, specifiable) <- verses) {
-          @if(specifiable) {
-            <p><strong>@{num}:</strong> @{text}</p>
-          } else {
-            <p><em class="text-muted">@{num}:</em> @{text}</p>
-          }
+          @verse(num, text, specifiable)
         }
         <hr/>
       </div>

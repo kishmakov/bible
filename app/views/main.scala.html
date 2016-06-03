@@ -1,4 +1,4 @@
-@(title: String)(body: Html)
+@(title: String, head: Html = Html(""))(body: Html)
 
 <!DOCTYPE html>
 
@@ -7,7 +7,7 @@
         <title>@title</title>
         <link rel="shortcut icon" type="image/x-icon" href="@routes.Assets.at("images/favicon.ico")">
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/bootstrap.min.css")"/>
-        <script src="@routes.Assets.at("javascripts/main.js")"></script>
+        @head
     </head>
     <body>
        @body
