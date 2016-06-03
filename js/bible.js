@@ -1,10 +1,7 @@
 import { createStore } from 'redux'
 import fetch from 'isomorphic-fetch'
 
-const INITIAL_STATE = {
-};
-
-function counter(state = INITIAL_STATE, action) {
+function counter(state = {}, action) {
     switch (action.type) {
         case 'TOGGLE':
             if (!state[action.verse]) {
@@ -51,9 +48,12 @@ store.subscribe(() => {
     }
 });
 
-_global.store = store;
-_global.fetch = function (verseId) {
-
+_global.toggle = function (verse, wrap, top) {
+    store.dispatch({
+        type: 'TOGGLE',
+        verse: verse,
+        wrap: wrap,
+        top: top});
 };
 
 

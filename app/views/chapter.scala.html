@@ -18,8 +18,7 @@
 
     if(specifiable) {
       <div id={wrap}>
-        <div id={top} onclick={s"_global.store.dispatch({ type: 'TOGGLE', " +
-                s"verse: '$num', wrap: '$wrap', top: '$top'})"} class="specifiable-verse">
+        <div id={top} onclick={s"_global.toggle('$num', '$wrap', '$top')"} class="specifiable-verse">
           <p><strong class="text-success">{num}:</strong> {text}</p>
         </div>
       </div>
