@@ -1,7 +1,7 @@
 # --- !Ups
 
 create table `headers` (
-    `lang` VARCHAR(10) not null,
+    `lang` VARCHAR(5) not null,
     `book_id` VARCHAR(10) not null,
     `name` VARCHAR(50) not null,
     `short_name` VARCHAR(50),

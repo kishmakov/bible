@@ -6,7 +6,7 @@ create table `verses` (
     `chapter` INTEGER not null,
     `verse` INTEGER not null,
     `text` VARCHAR(500) not null,
-    `specifiable` BOOLEAN);
+    `specifiable` BOOLEAN default false);
 
 alter table `verses` add primary key (`lang`, `book_id`, `chapter`, `verse`);
 
