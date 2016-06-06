@@ -19,7 +19,7 @@ trait HeaderComponent extends HasDatabaseConfigProvider[JdbcProfile] {
   import driver.api._
 
   class HeaderTable(tag: Tag) extends Table[Header](tag, "headers") {
-    def locale        = column[String]("locale")
+    def lang        = column[String]("lang")
     def bookId        = column[String]("book_id")
     def name          = column[String]("name")
     def shortName     = column[Option[String]]("short_name")
@@ -38,12 +38,12 @@ class HeadersDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
 
   import driver.api._
 
-  def findByLocale(locale: String): Future[Seq[Header]] = {
-    db.run(allHeaders.filter(_.locale === locale).result)
+  def findByLang(lang: String): Future[Seq[Header]] = {
+    db.run(allHeaders.filter(_.lang === lang).result)
   }
 
-  def findByLocaleCode(locale: String, code: String): Future[Header] = {
-    db.run(allHeaders.filter(h => h.locale === locale && h.bookId === code).result.head)
+  def findByLangCode(lang: String, code: String): Future[Header] = {
+    db.run(allHeaders.filter(h => h.lang === lang && h.bookId === code).result.head)
   }
 }
 

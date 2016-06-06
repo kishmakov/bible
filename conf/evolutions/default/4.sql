@@ -1,6 +1,6 @@
 # --- !Ups
 
-update `headers` set `presented`=true where `locale`="ru_RU" and `book_id`="Mt" ;
+update `headers` set `presented`=true where `lang`="ru" and `book_id`="Mt" ;
 
 insert into `verses` values
     ("ru", "Mt", 1, 1, "Родословие Иисуса Христа, Сына Давидова, Сына Авраамова.", false),
@@ -1104,6 +1104,6 @@ insert into `verses` values
 
 # --- !Downs
 
-update `headers` set `presented`=false where `locale`="ru_RU" and `book_id`="Mt" ;
+update `headers` set `presented`=false where `lang`="ru" and `book_id`="Mt" ;
 
 delete from `verses` where `lang`="ru" and `book_id`="Mt";

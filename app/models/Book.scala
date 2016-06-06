@@ -39,9 +39,9 @@ class BooksDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
 
   import driver.api._
 
-  def findByIdLocale(bookId: String, locale: String): Future[(Book, Header)] = {
+  def findByIdLang(bookId: String, lang: String): Future[(Book, Header)] = {
     val books = allBooks.filter(_.bookId === bookId)
-    val headers = allHeaders.filter(_.locale === locale)
+    val headers = allHeaders.filter(_.lang === lang)
     val jn = books join headers on { case (book, header) => book.bookId === header.bookId }
     db.run(jn.result.head)
   }
