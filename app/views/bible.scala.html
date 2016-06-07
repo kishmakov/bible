@@ -11,18 +11,21 @@
   }
 
 @main("Bible") {
-  <div class="container-fluid">
+  <div id="container" class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
-        <h1 class="text-center">@{headers("Bib").name}</h1>
-        <hr/>
+        <h1 class="text-center">
+          @{headers("Bib").name}&#x00A0;&#x00A0;&#x00A0;
+          <img id="settingsLogo" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
+        </h1>
       </div>
       <div class="col-md-2 col-sm-1"></div>
     </div>
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-4 col-sm-5">
+        <hr/>
         <h2>@{headers("VT").name}</h2>
 
         <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").clarification}</small></h3>
@@ -94,6 +97,7 @@
         @reference(headers("Mal"))
       </div>
       <div class="col-md-4 col-sm-5">
+        <hr/>
         <h2>@{headers("NT").name}</h2>
 
         <h3 class="text-muted">@{headers("StatN").name}<br><small>@{headers("StatN").clarification}</small></h3>

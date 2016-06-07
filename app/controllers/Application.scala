@@ -3,14 +3,14 @@ package controllers
 import javax.inject.{Singleton, Inject}
 
 import models.{BooksDAO, VersesDAO}
-import utils.HeadersInfo
+import utils.HeadersCache
 import play.api.libs.json.{JsNumber, JsString, JsObject, Json}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class Application @Inject()(val headersInfo: HeadersInfo,
+class Application @Inject()(val headersInfo: HeadersCache,
                             val booksDAO: BooksDAO,
                             val versesDAO: VersesDAO
                            ) extends Controller {

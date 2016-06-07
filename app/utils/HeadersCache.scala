@@ -11,7 +11,7 @@ import scala.collection._
 import scala.util.{Failure, Success}
 
 @Singleton
-class HeadersInfo @Inject()(val headersDAO: HeadersDAO) {
+class HeadersCache @Inject()(val headersDAO: HeadersDAO) {
   val langs = List("ru", "cs")
   val langToHeaders: concurrent.Map[String, immutable.Map[String, Header]]
     = new ConcurrentHashMap[String, immutable.Map[String, Header]] asScala

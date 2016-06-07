@@ -1,3 +1,8 @@
+img#settingsLogo {
+    height: 36px;
+    cursor: pointer;
+}
+
 .specifiable-verse {
     padding-left: 5px;
     border-radius: 3px;

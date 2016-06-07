@@ -12,7 +12,6 @@
       };
     </script>
     <script src="@routes.Assets.at("javascripts/main.js")"></script>
-    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
   }
 
   @verse(num: Int, text: String) = @{
@@ -27,7 +26,7 @@
   }
 
 @main("Chapter", head) {
-  <div class="container-fluid">
+  <div id="container" class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1 text-center">
         @{if (chapter > 1)
@@ -36,7 +35,10 @@
           reference("/chapter/" + book.prevId + "/" + book.prevChapters, book.prevId)}
       </div>
       <div class="col-md-8 col-sm-10">
-        <h2>@{header.name} #@{chapter}</h2>
+        <h2>
+          @{header.name} #@{chapter}&#x00A0;&#x00A0;&#x00A0;
+          <img id="settingsLogo" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
+        </h2>
         <hr/>
       </div>
       <div class="col-md-2 col-sm-1">
