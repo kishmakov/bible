@@ -2,16 +2,16 @@ package controllers
 
 import javax.inject.{Singleton, Inject}
 
-import models.{BooksDAO, VersesDAO}
-import utils.HeadersCache
+import models.{VersesDAO}
+import utils.{BooksCache, HeadersCache}
 import play.api.libs.json.{JsNumber, JsString, JsObject, Json}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class Application @Inject()(val headers: HeadersCache,
-                            val booksDAO: BooksDAO,
+class Application @Inject()(val headersCache: HeadersCache,
+                            val booksCache: BooksCache,
                             val versesDAO: VersesDAO
                            ) extends Controller {
 
@@ -24,20 +24,20 @@ class Application @Inject()(val headers: HeadersCache,
   }
 
   def books(lang: String) = Action {
-    if (headers.langToHeaders.contains(lang))
-      Ok(views.html.books(lang, headers.langToHeaders(lang))).withCookies(
-        Cookie("lang", lang, httpOnly = false))
-    else
-      NotFound
+    headersCache(lang) match {
+      case Some(header) => Ok(views.html.books(lang, header))
+        .withCookies(Cookie("lang", lang, httpOnly = false))
+      case None => NotFound
+    }
   }
 
   def chapter(bookId: String, chapter: Int, lang: String) = Action.async {
-    val result = booksDAO.findByIdLang(bookId, lang).
-      zip(versesDAO.findByLangBookChapter(lang, bookId, chapter))
-
-    result map { _ match {
-        case ((book, header), verses) =>
-          Ok(views.html.chapter(lang, chapter, header, book, verses.sortWith(_.verse < _.verse)))
+    val book = booksCache(bookId)
+    val header = headersCache(lang) flatMap(m => m get bookId)
+    versesDAO.findByLangBookChapter(lang, bookId, chapter) map {
+      verses => (book, header) match {
+        case (Some(b), Some(h)) =>
+          Ok(views.html.chapter(lang, chapter, h, b, verses.sortWith(_.verse < _.verse)))
         case _ => NotFound
       }
     }

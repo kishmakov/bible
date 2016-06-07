@@ -1,11 +1,7 @@
 package models
 
-import javax.inject.{Inject, Singleton}
-
-import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
-
-import scala.concurrent.Future
 
 case class Book(bookId: String,
                 chapters: Int,
@@ -32,18 +28,3 @@ trait BookComponent extends HasDatabaseConfigProvider[JdbcProfile] {
 
   val allBooks = TableQuery[BookTable]
 }
-
-@Singleton
-class BooksDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
-  extends HasDatabaseConfigProvider[JdbcProfile] with BookComponent with HeaderComponent {
-
-  import driver.api._
-
-  def findByIdLang(bookId: String, lang: String): Future[(Book, Header)] = {
-    val books = allBooks.filter(_.bookId === bookId)
-    val headers = allHeaders.filter(_.lang === lang)
-    val jn = books join headers on { case (book, header) => book.bookId === header.bookId }
-    db.run(jn.result.head)
-  }
-}
-
