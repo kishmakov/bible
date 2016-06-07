@@ -19,7 +19,7 @@
     val top = wrap + ":top"
 
     <div id={wrap}>
-      <div id={top} onclick={s"_global.toggle('$num', '$wrap', '$top')"} class="specifiable-verse">
+      <div id={top} onclick={s"_global.toggleVerse('$num', '$wrap', '$top')"} class="specifiable-verse">
         <p><em class="text-muted">{num}:</em> {text}</p>
       </div>
     </div>
@@ -36,8 +36,11 @@
       </div>
       <div class="col-md-8 col-sm-10">
         <h2>
-          @{header.name} #@{chapter}&#x00A0;&#x00A0;&#x00A0;
-          <img id="settingsLogo" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
+          @{header.name} #@{chapter}
+          &#x00A0;&#x00A0;&#x00A0;
+          <img class="menu" src="@routes.Assets.at("images/books.png")" onclick="_global.toggleBooks()">
+          &#x00A0;&#x00A0;&#x00A0;
+          <img class="menu" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
         </h2>
         <hr/>
       </div>

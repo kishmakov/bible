@@ -16,8 +16,11 @@
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
         <h1 class="text-center">
-          @{headers("Bib").name}&#x00A0;&#x00A0;&#x00A0;
-          <img id="settingsLogo" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
+          @{headers("Bib").name}
+            &#x00A0;&#x00A0;&#x00A0;
+          <img class="menu" src="@routes.Assets.at("images/books.png")" onclick="_global.toggleBooks()">
+            &#x00A0;&#x00A0;&#x00A0;
+          <img class="menu" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
         </h1>
       </div>
       <div class="col-md-2 col-sm-1"></div>

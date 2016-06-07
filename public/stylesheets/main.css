@@ -1,5 +1,5 @@
-img#settingsLogo {
-    height: 36px;
+img.menu {
+    height: 32px;
     cursor: pointer;
 }
 
