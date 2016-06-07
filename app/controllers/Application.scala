@@ -2,14 +2,15 @@ package controllers
 
 import javax.inject.{Singleton, Inject}
 
-import models.{BooksDAO, HeadersDAO, VersesDAO}
+import models.{BooksDAO, VersesDAO}
+import utils.HeadersInfo
 import play.api.libs.json.{JsNumber, JsString, JsObject, Json}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class Application @Inject()(val headersDAO: HeadersDAO,
+class Application @Inject()(val headersInfo: HeadersInfo,
                             val booksDAO: BooksDAO,
                             val versesDAO: VersesDAO
                            ) extends Controller {
@@ -18,11 +19,8 @@ class Application @Inject()(val headersDAO: HeadersDAO,
     Ok(views.html.index("Your new application is ready."))
   }
 
-  def bible = Action.async {
-    val headers = headersDAO.findByLang("ru")
-    headers map { result =>
-      Ok(views.html.bible(result map (h => h.code -> h) toMap))
-    }
+  def bible = Action {
+    Ok(views.html.bible(headersInfo.langToHeaders("ru")))
   }
 
   def chapter(bookId: String, chapter: Int) = Action.async {
