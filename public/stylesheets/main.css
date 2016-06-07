@@ -1,17 +1,24 @@
-.specifiable-verse:hover {
+.specifiable-verse {
+    padding-left: 5px;
+    border-radius: 3px;
     cursor: pointer;
+}
+
+.specifiable-verse:hover {
     background-color: #fcf8e3;
 }
 
 .specified-verse {
     cursor: pointer;
     background-color: #d9edf7;
-    border-radius: 5px;
+    border-radius: 3px;
+    padding-left: 5px;
 }
 
 .specification {
     background-color: #f5f5f5;
-    border-radius: 5px;
+    border-radius: 3px;
+    padding-left: 5px;
     border: 2px solid #d9edf7;
 }
 

@@ -7,7 +7,7 @@ import slick.driver.JdbcProfile
 
 import scala.concurrent.Future
 
-case class Verse(chapter: Int, verse: Int, text: String, specifiable: Boolean)
+case class Verse(chapter: Int, verse: Int, text: String)
 
 trait VerseComponent extends HasDatabaseConfigProvider[JdbcProfile] {
   protected val driver: JdbcProfile
@@ -20,9 +20,8 @@ trait VerseComponent extends HasDatabaseConfigProvider[JdbcProfile] {
     def chapter     = column[Int]("chapter")
     def verse       = column[Int]("verse")
     def text        = column[String]("text")
-    def specifiable = column[Boolean]("specifiable")
 
-    def * = (chapter, verse, text, specifiable) <> (Verse.tupled, Verse.unapply)
+    def * = (chapter, verse, text) <> (Verse.tupled, Verse.unapply)
   }
 
   val allVerses = TableQuery[VerseTable]

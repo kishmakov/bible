@@ -15,23 +15,15 @@
     <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
   }
 
-  @verse(num: Int, text: String, specifiable: Boolean) = @{
+  @verse(num: Int, text: String) = @{
     val wrap = "verse:" + num.toString()
     val top = wrap + ":top"
 
-    if(specifiable) {
-      <div id={wrap}>
-        <div id={top} onclick={s"_global.toggle('$num', '$wrap', '$top')"} class="specifiable-verse">
-          <p><strong class="text-success">{num}:</strong> {text}</p>
-        </div>
+    <div id={wrap}>
+      <div id={top} onclick={s"_global.toggle('$num', '$wrap', '$top')"} class="specifiable-verse">
+        <p><em class="text-muted">{num}:</em> {text}</p>
       </div>
-    } else {
-      <div>
-        <div>
-          <p><em class="text-muted">{num}:</em> {text}</p>
-        </div>
-      </div>
-    }
+    </div>
   }
 
 @main("Chapter", head) {
@@ -57,8 +49,8 @@
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
-        @for(Verse(_, num, text, specifiable) <- verses) {
-          @verse(num, text, specifiable)
+        @for(Verse(_, num, text) <- verses) {
+          @verse(num, text)
         }
         <hr/>
       </div>
