@@ -2,20 +2,31 @@ import { createStore } from 'redux'
 import fetch from 'isomorphic-fetch'
 
 const persistedState = {
-    mainLang: localStorage.getItem('mainLang') || 'ru',
+    supportiveLangs: (localStorage.getItem('supportiveLangs') || '').split(':').filter(s => s.length > 0),
     menu: 'NONE'
 };
 
 function bibleApp(state, action) {
     switch (action.type) {
+        case 'ADD_SUPPORTIVE_LANG':
+            if (state.supportiveLangs.indexOf(action.lang) == -1) {
+                state.supportiveLangs.push(action.lang);
+            }
+            return state;
+        case 'REMOVE_SUPPORTIVE_LANG':
+            var index = state.supportiveLangs.indexOf(action.lang);
+            if (index > -1) {
+                state.supportiveLangs.splice(index, 1);
+            }
+            return state;
         case 'MENU_SETTINGS':
-            state['menu'] = 'SETTINGS';
+            state.menu = 'SETTINGS';
             return state;
         case 'MENU_BOOKS':
-            state['menu'] = 'BOOKS';
+            state.menu = 'BOOKS';
             return state;
         case 'MENU_NONE':
-            state['menu'] = 'NONE';
+            state.menu = 'NONE';
             return state;
         case 'RESET_VERSE':
             state[action.verse] = {
@@ -70,16 +81,26 @@ function header4(title) {
     var h4 = document.createElement("h4");
     h4.innerHTML = title;
     var div = document.createElement("div");
-    div.appendChild(h4)
+    div.appendChild(h4);
     return div;
+}
+
+function getCookie(name) {
+    var value = '; ' + document.cookie;
+    var parts = value.split('; ' + name + '=');
+    if (parts.length == 2) return parts.pop().split(';').shift();
 }
 
 function addSupportiveLang(container, langCode, languageSelfName) {
     var checkbox = document.createElement('input');
-    checkbox.type = "checkbox";
-    //checkbox.name = "name";
-    //checkbox.value = "value";
-    //checkbox.id = "id";
+    checkbox.type = 'checkbox';
+    checkbox.disabled = getCookie('lang') === langCode;
+    checkbox.defaultChecked = checkbox.disabled
+        || (store.getState().supportiveLangs.indexOf(langCode) > -1);
+    checkbox.onclick = function() {
+        const action = this.checked ? 'ADD_SUPPORTIVE_LANG' : 'REMOVE_SUPPORTIVE_LANG';
+        store.dispatch({type: action, lang: langCode});
+    };
 
     var label = document.createElement('label');
     label.appendChild(checkbox);
@@ -139,6 +160,11 @@ store.subscribe(() => {
     menu.appendChild(padding.cloneNode(true));
 
     container.insertBefore(menu, container.childNodes[3]);
+});
+
+store.subscribe(() => {
+    const supportiveLangs = store.getState().supportiveLangs.join(":");
+    localStorage.setItem('supportiveLangs', supportiveLangs);
 });
 
 _global.toggleVerse = function (verse, wrap, top, lang) {

@@ -16,7 +16,6 @@ class Application @Inject()(val headers: HeadersCache,
                            ) extends Controller {
 
   def index = Action { request =>
-    System.out.println("cookie = " + request.cookies.get("lang"))
     val lang = request.cookies.get("lang") match {
       case Some(cookie) => cookie.value
       case None => "ru"
@@ -27,7 +26,7 @@ class Application @Inject()(val headers: HeadersCache,
   def books(lang: String) = Action {
     if (headers.langToHeaders.contains(lang))
       Ok(views.html.books(lang, headers.langToHeaders(lang))).withCookies(
-        Cookie("lang", lang))
+        Cookie("lang", lang, httpOnly = false))
     else
       NotFound
   }
