@@ -66,6 +66,31 @@ store.subscribe(() => {
     }
 });
 
+function header4(title) {
+    var h4 = document.createElement("h4");
+    h4.innerHTML = title;
+    var div = document.createElement("div");
+    div.appendChild(h4)
+    return div;
+}
+
+function addSupportiveLang(container, langCode, languageSelfName) {
+    var checkbox = document.createElement('input');
+    checkbox.type = "checkbox";
+    //checkbox.name = "name";
+    //checkbox.value = "value";
+    //checkbox.id = "id";
+
+    var label = document.createElement('label');
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode(languageSelfName));
+
+    var div = document.createElement("div");
+    div.className = "checkbox";
+    div.appendChild(label);
+    container.appendChild(div);
+}
+
 let menuValue='NONE';
 
 store.subscribe(() => {
@@ -86,15 +111,22 @@ store.subscribe(() => {
         return;
     }
 
-    var padding = document.createElement("div");
-    padding.className = "col-md-2 col-sm-1";
+    var padding = document.createElement('div');
+    padding.className = 'col-md-2 col-sm-1';
     var center = document.createElement("div");
-    center.className = "col-md-8 col-sm-10";
+    center.className = 'col-md-8 col-sm-10';
 
     if (menuValue === 'BOOKS') {
-        center.appendChild(document.createTextNode("Books."));
+        center.appendChild(document.createTextNode('Books.'));
     } else if (menuValue === 'SETTINGS') {
-        center.appendChild(document.createTextNode("Settings."));
+        var supportiveLangs = document.createElement('div');
+        supportiveLangs.className = 'checkbox';
+        supportiveLangs.appendChild(header4('Уточняющие языки'));
+        addSupportiveLang(supportiveLangs, 'chu', 'Церковнославянский');
+        addSupportiveLang(supportiveLangs, 'la', 'Latina');
+        addSupportiveLang(supportiveLangs, 'gr', 'Ελληνικά');
+        addSupportiveLang(supportiveLangs, 'ru', 'Русский');
+        center.appendChild(supportiveLangs);
     }
 
     center.appendChild(document.createElement("hr"));
@@ -109,10 +141,10 @@ store.subscribe(() => {
     container.insertBefore(menu, container.childNodes[3]);
 });
 
-_global.toggleVerse = function (verse, wrap, top) {
+_global.toggleVerse = function (verse, wrap, top, lang) {
     if (!store.getState()[verse]) {
         store.dispatch({type: 'RESET_VERSE', verse: verse, wrap: wrap, top: top});
-        fetch(`/specification/${_global.book}/${_global.chapter}/${verse}`)
+        fetch(`/info/${_global.book}/${_global.chapter}/${verse}/${lang}/`)
             .then(response => response.json())
             .then(json => {
                 store.dispatch({type: 'FILL_VERSE', verse: verse, info: json});

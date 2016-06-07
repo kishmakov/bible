@@ -10,33 +10,41 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class Application @Inject()(val headersInfo: HeadersCache,
+class Application @Inject()(val headers: HeadersCache,
                             val booksDAO: BooksDAO,
                             val versesDAO: VersesDAO
                            ) extends Controller {
 
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+  def index = Action { request =>
+    System.out.println("cookie = " + request.cookies.get("lang"))
+    val lang = request.cookies.get("lang") match {
+      case Some(cookie) => cookie.value
+      case None => "ru"
+    }
+    Redirect(s"/books/$lang/")
   }
 
-  def bible = Action {
-    Ok(views.html.bible(headersInfo.langToHeaders("ru")))
+  def books(lang: String) = Action {
+    if (headers.langToHeaders.contains(lang))
+      Ok(views.html.books(lang, headers.langToHeaders(lang))).withCookies(
+        Cookie("lang", lang))
+    else
+      NotFound
   }
 
-  def chapter(bookId: String, chapter: Int) = Action.async {
-    val result = booksDAO.findByIdLang(bookId, "ru").
-      zip(versesDAO.findByLangBookChapter("ru", bookId, chapter))
+  def chapter(bookId: String, chapter: Int, lang: String) = Action.async {
+    val result = booksDAO.findByIdLang(bookId, lang).
+      zip(versesDAO.findByLangBookChapter(lang, bookId, chapter))
 
     result map { _ match {
         case ((book, header), verses) =>
-          Ok(views.html.chapter(chapter, header, book, verses.sortWith(_.verse < _.verse)))
-        case _ =>
-          Ok(views.html.index("There are some problems on server. Try to refresh page later."))
+          Ok(views.html.chapter(lang, chapter, header, book, verses.sortWith(_.verse < _.verse)))
+        case _ => NotFound
       }
     }
   }
 
-  def specification(book: String, chapter: Int, verse: Int) = Action {
+  def info(book: String, chapter: Int, verse: Int, lang: String) = Action {
     Ok(Json.toJson(JsObject(Seq(
       "book" -> JsString(book),
       "chapter" -> JsNumber(chapter),

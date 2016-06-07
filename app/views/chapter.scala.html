@@ -1,4 +1,4 @@
-@(chapter: Int, header: Header, book: Book, verses: Seq[Verse])
+@(lang: String, chapter: Int, header: Header, book: Book, verses: Seq[Verse])
 
   @reference(href: String, title: String) = @{
       <a class="lead" href={href}><h2>{title}</h2></a>
@@ -15,11 +15,11 @@
   }
 
   @verse(num: Int, text: String) = @{
-    val wrap = "verse:" + num.toString()
+    val wrap = s"verse:$num"
     val top = wrap + ":top"
 
     <div id={wrap}>
-      <div id={top} onclick={s"_global.toggleVerse('$num', '$wrap', '$top')"} class="specifiable-verse">
+      <div id={top} onclick={s"_global.toggleVerse('$num', '$wrap', '$top', '$lang')"} class="specifiable-verse">
         <p><em class="text-muted">{num}:</em> {text}</p>
       </div>
     </div>
@@ -30,9 +30,9 @@
     <div class="row">
       <div class="col-md-2 col-sm-1 text-center">
         @{if (chapter > 1)
-          reference("/chapter/" + book.bookId + "/" + (chapter - 1).toString(), "#" + (chapter - 1).toString())
+          reference(s"/chapter/${book.bookId}/${chapter - 1}/$lang/", s"#${chapter - 1}")
         else
-          reference("/chapter/" + book.prevId + "/" + book.prevChapters, book.prevId)}
+          reference(s"/chapter/${book.prevId}/${book.prevChapters}/$lang/", book.prevId)}
       </div>
       <div class="col-md-8 col-sm-10">
         <h2>
@@ -46,9 +46,9 @@
       </div>
       <div class="col-md-2 col-sm-1">
         @{if (chapter < book.chapters)
-          reference("/chapter/" + book.bookId + "/" + (chapter + 1).toString(), "#" + (chapter + 1).toString())
+          reference(s"/chapter/${book.bookId}/${chapter + 1}/$lang/", s"#${chapter + 1}")
         else
-          reference("/chapter/" + book.nextId + "/1", book.nextId)}
+          reference(s"/chapter/${book.nextId}/1/$lang/", book.nextId)}
       </div>
     </div>
     <div class="row">

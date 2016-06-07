@@ -1,16 +1,24 @@
-@(headers: Map[String, Header])
+@(lang: String, headers: Map[String, Header])
 
   @reference(header: Header, suffix: String = "") = @{
     val text = (if (header.name == header.clarification.getOrElse(header.name))
       header.name else header.name + " (" + header.clarification.get + ")") + suffix
 
     if (header.presented.getOrElse(false))
-      <a href={"/chapter/" + header.code + "/1"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
+      <a href={"/chapter/" + header.code + s"/1/$lang/"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
     else
       <span>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</span>
   }
 
-@main("Bible") {
+  @head = {
+    <script>
+      var _global = {
+      };
+    </script>
+    <script src="@routes.Assets.at("javascripts/main.js")"></script>
+  }
+
+@main("Bible", head) {
   <div id="container" class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
@@ -18,17 +26,15 @@
         <h1 class="text-center">
           @{headers("Bib").name}
             &#x00A0;&#x00A0;&#x00A0;
-          <img class="menu" src="@routes.Assets.at("images/books.png")" onclick="_global.toggleBooks()">
-            &#x00A0;&#x00A0;&#x00A0;
           <img class="menu" src="@routes.Assets.at("images/settings.png")" onclick="_global.toggleSettings()">
         </h1>
+        <hr/>
       </div>
       <div class="col-md-2 col-sm-1"></div>
     </div>
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-4 col-sm-5">
-        <hr/>
         <h2>@{headers("VT").name}</h2>
 
         <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").clarification}</small></h3>
@@ -100,7 +106,6 @@
         @reference(headers("Mal"))
       </div>
       <div class="col-md-4 col-sm-5">
-        <hr/>
         <h2>@{headers("NT").name}</h2>
 
         <h3 class="text-muted">@{headers("StatN").name}<br><small>@{headers("StatN").clarification}</small></h3>
