@@ -21,6 +21,7 @@ function addSupportiveLang(container, code, selfName) {
     var label = document.createElement('label');
     label.appendChild(checkbox);
     label.appendChild(document.createTextNode(selfName));
+    label.className = 'font-' + code
 
     var div = document.createElement('div');
     div.className = 'checkbox';
@@ -28,10 +29,11 @@ function addSupportiveLang(container, code, selfName) {
     container.appendChild(div);
 }
 
-function addLang(container, langCode, languageSelfName) {
+function addLang(container, code, selfName) {
     var link = document.createElement('a');
-    link.appendChild(document.createTextNode('\u25B8 ' + languageSelfName));
-    link.href = urlForLang(langCode);
+    link.className = 'font-' + code
+    link.appendChild(document.createTextNode('\u25B8 ' + selfName));
+    link.href = urlForLang(code);
     var p = document.createElement('p');
     p.appendChild(link);
     container.appendChild(p);

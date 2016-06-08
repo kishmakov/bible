@@ -7,12 +7,21 @@
   @verse(num: Int, text: String) = @{
     val wrap = s"verse:$num"
     val top = wrap + ":top"
+    val bracketed = """\[(^\])+\]""".r
 
     <div id={wrap}>
       <div id={top}
         onclick={s"_global.toggleVerse('${book.bookId}', '$chapter', '$num', '$wrap', '$top', '$lang')"}
         class="verse">
-        <p><em class="text-muted">{num}:</em> <span class={s"verse-$lang"}>{text}</span></p>
+        <p>
+          <em class="text-muted">{num}:</em>
+          {text.split("""((?=\[)|(?<=\]))""") map { part =>
+            if (part.startsWith("["))
+              <span class={s"verse font-$lang text-success"}>{part}</span>
+            else
+              <span class={s"verse font-$lang"}>{part}</span>
+          }}
+        </p>
       </div>
     </div>
   }

@@ -34,12 +34,12 @@ img.menu {
     font-weight: normal;
 }
 
-span.verse-ru {
+span.verse {
+    padding-left: 0;
     font-size: 13.5pt;
 }
 
-span.verse-chu {
-    font-size: 13.5pt;
+.font-chu {
     font-family: "Loaded Ucs";
 }
 
