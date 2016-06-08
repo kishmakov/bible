@@ -6,3 +6,7 @@ function getCookie(name) {
 
 export const currentLang = getCookie('lang');
 
+export function urlForLang(langCode) {
+    return _global.baseUrl + `${langCode}/`;
+}
+

@@ -1,5 +1,5 @@
 import store from './bible-store'
-import {currentLang} from './tools'
+import {currentLang, urlForLang} from './tools'
 
 function header4(title) {
     var h4 = document.createElement("h4");
@@ -33,7 +33,7 @@ function addSupportiveLang(container, langCode, languageSelfName) {
 function addLang(container, langCode, languageSelfName) {
     var link = document.createElement('a');
     link.appendChild(document.createTextNode(languageSelfName));
-    link.href = _global.langFreeUrl + `${langCode}/`;
+    link.href = urlForLang(langCode);
     var p = document.createElement('p');
     p.appendChild(link);
     container.appendChild(p);

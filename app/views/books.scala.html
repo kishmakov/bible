@@ -10,16 +10,7 @@
       <span>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</span>
   }
 
-  @head = {
-    <script>
-      var _global = {
-        langFreeUrl: '/books/'
-      };
-    </script>
-    <script src="@routes.Assets.at("javascripts/main.js")"></script>
-  }
-
-@main("Bible", head) {
+@main("Bible", "/books/") {
   <div id="container" class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
