@@ -32,18 +32,3 @@ trait HeaderComponent extends HasDatabaseConfigProvider[JdbcProfile] {
   val allHeaders = TableQuery[HeaderTable]
 }
 
-@Singleton
-class HeadersDAO @Inject()(val dbConfigProvider: DatabaseConfigProvider)
-  extends HasDatabaseConfigProvider[JdbcProfile] with HeaderComponent {
-
-  import driver.api._
-
-  def findByLang(lang: String): Future[Seq[Header]] = {
-    db.run(allHeaders.filter(_.lang === lang).result)
-  }
-
-  def findByLangCode(lang: String, code: String): Future[Header] = {
-    db.run(allHeaders.filter(h => h.lang === lang && h.bookId === code).result.head)
-  }
-}
-
