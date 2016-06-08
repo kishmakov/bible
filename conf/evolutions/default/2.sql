@@ -3,6 +3,8 @@
 insert into `headers` values
     ("ru",    "Bib",                            "Библия",       null,                        null,  null),
     ("ru",  "Incan",                    "Неканоническая",       null,                        null,  null),
+    ("ru",   "Lang",                              "Язык",       null,                        null,  null),
+    ("ru", "SLangs",                   "Уточняющие языки",       null,                        null,  null),
 
     ("ru",     "VT",                      "Ветхий Завет",       null,                        null,  null),
 
@@ -112,4 +114,4 @@ insert into `headers` values
 
 # --- !Downs
 
-delete from `headers` where `locale` = "ru";
+delete from `headers` where `lang` = "ru";

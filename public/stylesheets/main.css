@@ -27,3 +27,19 @@ img.menu {
     border: 2px solid #d9edf7;
 }
 
+@font-face {
+    font-family: "Loaded Ucs";
+    src: url("HirmIEUcs8.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+span.verse-ru {
+    font-size: 13.5pt;
+}
+
+span.verse-chu {
+    font-size: 13.5pt;
+    font-family: "Loaded Ucs";
+}
+

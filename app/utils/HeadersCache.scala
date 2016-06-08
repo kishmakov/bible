@@ -22,7 +22,7 @@ class HeadersCache @Inject()(val dbConfigProvider: DatabaseConfigProvider)
 
   def apply(lang: String) = langToHeaders.get(lang)
 
-  List("ru", "csu").foreach(lang => {
+  List("ru", "chu").foreach(lang => {
     db.run(allHeaders.filter(_.lang === lang).result).onComplete({
       case Success(list) => langToHeaders += (lang -> (list map (h => h.code -> h) toMap))
       case Failure(exception) => println(exception)

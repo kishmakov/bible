@@ -12,7 +12,7 @@
       <div id={top}
         onclick={s"_global.toggleVerse('${book.bookId}', '$chapter', '$num', '$wrap', '$top', '$lang')"}
         class="verse">
-        <p><em class="text-muted">{num}:</em> {text}</p>
+        <p><em class="text-muted">{num}:</em> <span class={s"verse-$lang"}>{text}</span></p>
       </div>
     </div>
   }

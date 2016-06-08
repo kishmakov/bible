@@ -38,6 +38,7 @@ class Application @Inject()(val headersCache: HeadersCache,
       verses => (book, header) match {
         case (Some(b), Some(h)) =>
           Ok(views.html.chapter(lang, chapter, h, b, verses.sortWith(_.verse < _.verse)))
+            .withCookies(Cookie("lang", lang, httpOnly = false))
         case _ => NotFound
       }
     }
