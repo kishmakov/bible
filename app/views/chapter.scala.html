@@ -5,12 +5,9 @@
   }
 
   @head = {
-    <script>
-      var _global = {
-        book: "@{book.bookId}",
-        chapter: "@{chapter}"
-      };
-    </script>
+    <script> var _global = {
+      langFreeUrl: '@{s"/chapter/${book.bookId}/$chapter/"}'
+    }; </script>
     <script src="@routes.Assets.at("javascripts/main.js")"></script>
   }
 
@@ -19,7 +16,9 @@
     val top = wrap + ":top"
 
     <div id={wrap}>
-      <div id={top} onclick={s"_global.toggleVerse('$num', '$wrap', '$top', '$lang')"} class="specifiable-verse">
+      <div id={top}
+        onclick={s"_global.toggleVerse('${book.bookId}', '${chapter}', '$num', '$wrap', '$top', '$lang')"}
+        class="specifiable-verse">
         <p><em class="text-muted">{num}:</em> {text}</p>
       </div>
     </div>

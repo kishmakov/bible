@@ -1,11 +1,7 @@
 package models
 
-import javax.inject.{Inject, Singleton}
-
-import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
-
-import scala.concurrent.Future
 
 case class Header(code: String,
                   name: String,

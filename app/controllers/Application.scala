@@ -25,7 +25,7 @@ class Application @Inject()(val headersCache: HeadersCache,
 
   def books(lang: String) = Action {
     headersCache(lang) match {
-      case Some(header) => Ok(views.html.books(lang, header))
+      case Some(headers) => Ok(views.html.books(lang, headers))
         .withCookies(Cookie("lang", lang, httpOnly = false))
       case None => NotFound
     }
