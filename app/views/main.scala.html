@@ -10,11 +10,15 @@
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")"/>
         <script> var _global = {
             baseUrl: '@baseUrl',
+            headers: {
+                languageSelection:   'Язык',
+                supportiveLanguages: 'Уточняющие языки'
+            },
             languages: {
                 chu: 'Церковнославянский',
-                la: 'Latina',
-                gr: 'Ελληνικά',
-                ru: 'Русский'
+                la:  'Latina',
+                gr:  'Ελληνικά',
+                ru:  'Русский'
             }
         }; </script>
         <script src="@routes.Assets.at("javascripts/main.js")"></script>

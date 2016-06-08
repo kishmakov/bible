@@ -3,13 +3,13 @@ img.menu {
     cursor: pointer;
 }
 
-.specifiable-verse {
+.verse {
     padding-left: 5px;
     border-radius: 3px;
     cursor: pointer;
 }
 
-.specifiable-verse:hover {
+.verse:hover {
     background-color: #fcf8e3;
 }
 

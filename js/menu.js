@@ -1,5 +1,5 @@
 import store from './bible-store'
-import {currentLang, urlForLang} from './tools'
+import {currentLang, headers, languages, urlForLang} from './tools'
 
 function header4(title) {
     var h4 = document.createElement("h4");
@@ -9,30 +9,28 @@ function header4(title) {
     return div;
 }
 
-function addSupportiveLang(container, langCode, languageSelfName) {
+function addSupportiveLang(container, code, selfName) {
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.disabled = currentLang === langCode;
-    checkbox.defaultChecked = checkbox.disabled
-        || (store.getState().supportiveLangs.indexOf(langCode) > -1);
+    checkbox.defaultChecked = store.getState().supportiveLangs.indexOf(code) > -1;
     checkbox.onclick = function() {
         const action = this.checked ? 'ADD_SUPPORTIVE_LANG' : 'REMOVE_SUPPORTIVE_LANG';
-        store.dispatch({type: action, lang: langCode});
+        store.dispatch({type: action, lang: code});
     };
 
     var label = document.createElement('label');
     label.appendChild(checkbox);
-    label.appendChild(document.createTextNode(languageSelfName));
+    label.appendChild(document.createTextNode(selfName));
 
     var div = document.createElement('div');
-    div.className = 'checkbox' + (checkbox.disabled ? ' disabled' : '');
+    div.className = 'checkbox';
     div.appendChild(label);
     container.appendChild(div);
 }
 
 function addLang(container, langCode, languageSelfName) {
     var link = document.createElement('a');
-    link.appendChild(document.createTextNode(languageSelfName));
+    link.appendChild(document.createTextNode('\u25B8 ' + languageSelfName));
     link.href = urlForLang(langCode);
     var p = document.createElement('p');
     p.appendChild(link);
@@ -40,19 +38,21 @@ function addLang(container, langCode, languageSelfName) {
 }
 
 function locateMenu(container) {
-    var langs = document.createElement('div');
-    langs.appendChild(header4('Язык'));
-    addLang(langs, 'chu', 'Церковнославянский');
-    addLang(langs, 'ru', 'Русский');
-    container.appendChild(langs);
+    let langs = document.createElement('div');
+    langs.appendChild(header4(headers.languageSelection));
 
-    var supportiveLangs = document.createElement('div');
+    let supportiveLangs = document.createElement('div');
     supportiveLangs.className = 'checkbox';
-    supportiveLangs.appendChild(header4('Уточняющие языки'));
-    addSupportiveLang(supportiveLangs, 'chu', 'Церковнославянский');
-    addSupportiveLang(supportiveLangs, 'la', 'Latina');
-    addSupportiveLang(supportiveLangs, 'gr', 'Ελληνικά');
-    addSupportiveLang(supportiveLangs, 'ru', 'Русский');
+    supportiveLangs.appendChild(header4(headers.supportiveLanguages));
+
+    for (var langCode in languages) {
+        if (languages.hasOwnProperty(langCode) && langCode != currentLang) {
+            addLang(langs, langCode, languages[langCode]);
+            addSupportiveLang(supportiveLangs, langCode, languages[langCode]);
+        }
+    }
+
+    container.appendChild(langs);
     container.appendChild(supportiveLangs);
 }
 

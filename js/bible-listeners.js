@@ -9,9 +9,7 @@ export function verseListener() {
             let top    = document.getElementById(state[verseId].top);
             let bottom = document.getElementById(state[verseId].bottom);
 
-            top.className = (state[verseId].open
-                ? "specified-verse"
-                : "specifiable-verse");
+            top.className = (state[verseId].open ? "specified-verse" : "verse");
 
             if (state[verseId].open && !wrap.contains(bottom)) {
                 bottom = document.createElement("div");
@@ -37,8 +35,8 @@ export function menuListener() {
 
     menuValue = store.getState()['menu'];
 
-    var container = document.getElementById("container");
-    var menu = document.getElementById("menu");
+    let container = document.getElementById("container");
+    let menu = document.getElementById("menu");
 
     if (container.contains(menu)) {
         container.removeChild(menu);
@@ -48,9 +46,9 @@ export function menuListener() {
         return;
     }
 
-    var padding = document.createElement('div');
+    let padding = document.createElement('div');
     padding.className = 'col-md-2 col-sm-1';
-    var center = document.createElement("div");
+    let center = document.createElement("div");
     center.className = 'col-md-8 col-sm-10';
 
     if (menuValue === 'BOOKS') {

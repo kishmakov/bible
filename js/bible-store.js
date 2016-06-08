@@ -19,13 +19,9 @@ function bibleApp(state, action) {
             }
             return state;
         case 'MENU_SETTINGS':
-            state.menu = 'SETTINGS';
-            return state;
         case 'MENU_BOOKS':
-            state.menu = 'BOOKS';
-            return state;
         case 'MENU_NONE':
-            state.menu = 'NONE';
+            state.menu = action.type.substring(5);
             return state;
         case 'RESET_VERSE':
             state[action.verse] = {

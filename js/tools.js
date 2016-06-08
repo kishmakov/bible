@@ -10,3 +10,8 @@ export function urlForLang(langCode) {
     return _global.baseUrl + `${langCode}/`;
 }
 
+export const headers = _global.headers;
+
+export const languages = _global.languages;
+
+
