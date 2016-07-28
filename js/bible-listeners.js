@@ -1,5 +1,5 @@
 import store from './bible-store'
-import locateMenu from './menu'
+import {locateMenu} from './menu'
 
 export function verseListener() {
     let state = store.getState();
@@ -28,6 +28,35 @@ export function verseListener() {
 
 let menuValue='NONE';
 
+function createAfresh(container, id) {
+    let element = document.getElementById(id);
+    if (container.contains(element)) {
+        container.removeChild(element);
+    }
+
+    element = document.createElement('div');
+    element.className = 'row';
+    element.id = id;
+
+    let padding = document.createElement('div');
+    padding.className = 'col-md-2 col-sm-1';
+
+    element.appendChild(padding);
+    element.appendChild(padding.cloneNode(true));
+
+    return element;
+}
+
+function insertInto(container, className) {
+    let element = document.createElement('div');
+    element.className = className;
+
+    let childrenNum = container.childNodes.length;
+    container.insertBefore(element, container.childNodes[childrenNum - 1]);
+
+    return element;
+}
+
 export function menuListener() {
     if (menuValue === store.getState()['menu']) {
         return;
@@ -35,38 +64,29 @@ export function menuListener() {
 
     menuValue = store.getState()['menu'];
 
-    let container = document.getElementById("container");
-    let menu = document.getElementById("menu");
+    let container = document.getElementById('container');
 
-    if (container.contains(menu)) {
-        container.removeChild(menu);
-    }
+    let menu = createAfresh(container, 'menu');
+    let menuPadding = createAfresh(container, 'menu-padding');
 
     if (menuValue === 'NONE') {
         return;
     }
 
-    let padding = document.createElement('div');
-    padding.className = 'col-md-2 col-sm-1';
-    let center = document.createElement("div");
-    center.className = 'col-md-8 col-sm-10';
-
     if (menuValue === 'BOOKS') {
+        let center = insertInto(menu, 'col-md-8 col-sm-10');
         center.appendChild(document.createTextNode('Books.'));
     } else if (menuValue === 'SETTINGS') {
-        locateMenu(center);
+        let centerLeft = insertInto(menu, 'col-md-4 col-sm-5');
+        let centerRight = insertInto(menu, 'col-md-4 col-sm-5');
+        locateMenu(centerLeft, centerRight);
     }
 
-    center.appendChild(document.createElement("hr"));
-
-    menu = document.createElement("div");
-    menu.className = "row";
-    menu.id = "menu";
-    menu.appendChild(padding);
-    menu.appendChild(center);
-    menu.appendChild(padding.cloneNode(true));
+    let hr = insertInto(menuPadding, 'col-md-8 col-sm-10');
+    hr.appendChild(document.createElement('hr'));
 
     container.insertBefore(menu, container.childNodes[3]);
+    container.insertBefore(menuPadding, container.childNodes[4])
 }
 
 export function langsListener() {

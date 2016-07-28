@@ -5,9 +5,9 @@
       header.name else header.name + " (" + header.clarification.get + ")") + suffix
 
     if (header.presented.getOrElse(false))
-      <a href={"/chapter/" + header.code + s"/1/$lang/"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
+      <a class={s"font-$lang"} href={"/chapter/" + header.code + s"/1/$lang/"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</a>
     else
-      <span>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</span>
+      <span class={s"font-$lang"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</span>
   }
 
 @main("Bible", "/books/") {

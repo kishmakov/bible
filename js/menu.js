@@ -21,7 +21,7 @@ function addSupportiveLang(container, code, selfName) {
     var label = document.createElement('label');
     label.appendChild(checkbox);
     label.appendChild(document.createTextNode(selfName));
-    label.className = 'font-' + code
+    label.className = 'font-' + code;
 
     var div = document.createElement('div');
     div.className = 'checkbox';
@@ -31,7 +31,7 @@ function addSupportiveLang(container, code, selfName) {
 
 function addLang(container, code, selfName) {
     var link = document.createElement('a');
-    link.className = 'font-' + code
+    link.className = 'font-' + code;
     link.appendChild(document.createTextNode('\u25B8 ' + selfName));
     link.href = urlForLang(code);
     var p = document.createElement('p');
@@ -39,7 +39,7 @@ function addLang(container, code, selfName) {
     container.appendChild(p);
 }
 
-function locateMenu(container) {
+export function locateMenu(leftPart, rightPart) {
     let langs = document.createElement('div');
     langs.appendChild(header4(headers.languageSelection));
 
@@ -54,8 +54,6 @@ function locateMenu(container) {
         }
     }
 
-    container.appendChild(langs);
-    container.appendChild(supportiveLangs);
+    leftPart.appendChild(langs);
+    rightPart.appendChild(supportiveLangs);
 }
-
-export default locateMenu;
