@@ -39,6 +39,10 @@ span.verse {
     font-size: 13.5pt;
 }
 
+.font-la, .font-gr,.font-ru {
+    font-family: Arial;
+}
+
 .font-chu {
     font-family: "Loaded Ucs";
 }

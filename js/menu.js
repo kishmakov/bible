@@ -10,7 +10,7 @@ function header4(title) {
 }
 
 function addSupportiveLang(container, code, selfName) {
-    var checkbox = document.createElement('input');
+    let checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.defaultChecked = store.getState().supportiveLangs.indexOf(code) > -1;
     checkbox.onclick = function() {
@@ -18,12 +18,12 @@ function addSupportiveLang(container, code, selfName) {
         store.dispatch({type: action, lang: code});
     };
 
-    var label = document.createElement('label');
+    let label = document.createElement('label');
     label.appendChild(checkbox);
     label.appendChild(document.createTextNode(selfName));
     label.className = 'font-' + code;
 
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.className = 'checkbox';
     div.appendChild(label);
     container.appendChild(div);
@@ -32,19 +32,16 @@ function addSupportiveLang(container, code, selfName) {
 function addLang(container, code, selfName) {
     var link = document.createElement('a');
     link.className = 'font-' + code;
-    link.appendChild(document.createTextNode('\u25B8 ' + selfName));
+    link.appendChild(document.createTextNode(selfName));
     link.href = urlForLang(code);
     var p = document.createElement('p');
     p.appendChild(link);
     container.appendChild(p);
 }
 
-export function locateMenu(leftPart, rightPart) {
-    let langs = document.createElement('div');
+export function locateMenu(langs, supportiveLangs) {
     langs.appendChild(header4(headers.languageSelection));
 
-    let supportiveLangs = document.createElement('div');
-    supportiveLangs.className = 'checkbox';
     supportiveLangs.appendChild(header4(headers.supportiveLanguages));
 
     for (var langCode in languages) {
@@ -53,7 +50,4 @@ export function locateMenu(leftPart, rightPart) {
             addSupportiveLang(supportiveLangs, langCode, languages[langCode]);
         }
     }
-
-    leftPart.appendChild(langs);
-    rightPart.appendChild(supportiveLangs);
 }

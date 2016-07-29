@@ -28,8 +28,7 @@
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-4 col-sm-5">
         <h2>@{headers("VT").name}</h2>
-
-        <h3 class="text-muted">@{headers("StatV").name}<br><small>@{headers("StatV").clarification}</small></h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("StatV").name}<br><small>@{headers("StatV").clarification}</small></h3>
 
         @reference(headers("Gen"))
         @reference(headers("Ex"))
@@ -37,7 +36,7 @@
         @reference(headers("Num"))
         @reference(headers("Deut"))
 
-        <h3 class="text-muted">@{headers("HistV").name}</h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("HistV").name}</h3>
 
         @reference(headers("Jos"))
         @reference(headers("Jdcs"))
@@ -65,7 +64,7 @@
         @reference(headers("3Mach"), "*")
         @reference(headers("4Mach"), "*")
 
-        <h3 class="text-muted">@{headers("DocV").name}</h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("DocV").name}</h3>
         @reference(headers("Job"))
         @reference(headers("Ps"))
         @reference(headers("Prov"))
@@ -74,7 +73,7 @@
         @reference(headers("Sap"), "*")
         @reference(headers("Sir"), "*")
 
-        <h3 class="text-muted">@{headers("ProvV").name}</h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("ProvV").name}</h3>
         @reference(headers("Isa"))
         @reference(headers("Jer"))
         @reference(headers("Ezch"))
@@ -100,17 +99,17 @@
       <div class="col-md-4 col-sm-5">
         <h2>@{headers("NT").name}</h2>
 
-        <h3 class="text-muted">@{headers("StatN").name}<br><small>@{headers("StatN").clarification}</small></h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("StatN").name}<br><small>@{headers("StatN").clarification}</small></h3>
 
         @reference(headers("Mt"))
         @reference(headers("Mc"))
         @reference(headers("Lc"))
         @reference(headers("In"))
 
-        <h3 class="text-muted">@{headers("HistN").name}</h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("HistN").name}</h3>
         @reference(headers("Act"))
 
-        <h3 class="text-muted">@{headers("DocN").name}</h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("DocN").name}</h3>
         @reference(headers("Jac"))
         <br/>
         @reference(headers("1Pet"))
@@ -141,7 +140,7 @@
         @reference(headers("Phm"))
         @reference(headers("Hebr"))
 
-        <h3 class="text-muted">@{headers("ProvN").name}</h3>
+        <h3 class="@{s"text-muted font-$lang"}">@{headers("ProvN").name}</h3>
         @reference(headers("Apoc"))
       </div>
       <div class="col-md-2 col-sm-1"></div>
@@ -150,7 +149,7 @@
       <div class="col-md-2 col-sm-1"></div>
       <div class="col-md-8 col-sm-10">
         <hr/>
-        <p class="text-muted">* @{headers("Incan").name}</p>
+        <p class="@{s"text-muted font-$lang"}">* @{headers("Incan").name}</p>
       </div>
       <div class="col-md-2 col-sm-1"></div>
     </div>
