@@ -8,7 +8,7 @@ insert into `headers` values
 
     ("chu",     "VT",                      "Ветхий Завет",       null, null,  null),
 
-    ("chu",  "StatV",               "Пятикнижие мwmсeова",       null,"Кни1ги законоположительные", null),
+    ("chu",  "StatV",               "Пятикни6жие мwmсeова",       null,"Кни6ги законоположительные", null),
 
     ("chu",    "Gen",                             "БытіE",     "Быт.", null, false),
     ("chu",     "Ex",                           "И#сх0дъ",     "Исх.", null, false),
@@ -16,7 +16,7 @@ insert into `headers` values
     ("chu",    "Num",                            "Чи1сла",     "Чис.", null, false),
     ("chu",   "Deut",                      "Второзак0ніе",    "Втор.", null, false),
 
-    ("chu",  "HistV",                "Кни1ги исторические",       null, null,  null),
+    ("chu",  "HistV",                "Кни6ги исторические",       null, null,  null),
 
     ("chu",    "Jos",                    "Їисyса наvи1на",     "Нав.", null, false),
     ("chu",   "Jdcs",                 "Судjй їсрaилевыхъ",     "Суд.", null, false),
@@ -39,7 +39,7 @@ insert into `headers` values
     ("chu",  "3Mach",                   "G маккавей1скаz",    "3Мак.", null, false),
     ("chu",  "4Mach",                  "д7 маккавей1скаz",    "4Мак.", null, false),
 
-    ("chu",   "DocV",                 "Кни1ги учительные",       null, null,  null),
+    ("chu",   "DocV",                 "Кни6ги учительные",       null, null,  null),
 
     ("chu",    "Job",                              "Јwвъ",      "Иов", null, false),
     ("chu",     "Ps",                          "Pалти1рь",      "Пс.", null, false),
@@ -49,7 +49,7 @@ insert into `headers` values
     ("chu",    "Sap",              "Премyдрости соломHни",    "Прем.", null, false),
     ("chu",    "Sir",                            "Сірахъ",     "Сир.", null, false),
 
-    ("chu",  "ProvV",                "Кни1ги пророческие",       null, null,  null),
+    ("chu",  "ProvV",                "Кни6ги пророческие",       null, null,  null),
 
     ("chu",    "Isa",                            "И3сaіи",      "Ис.", null, false),
     ("chu",    "Jer",                           "Їеремjи",     "Иер.", null, false),
@@ -73,18 +73,18 @@ insert into `headers` values
 
     ("chu",     "NT",                       "Новый Завет",       null, null,  null),
 
-    ("chu",  "StatN",              "С™0е бlговэствовaніе",       null,"Кни1ги законоположительные",  null),
+    ("chu",  "StatN",              "С™0е бlговэствовaніе",       null,"Кни6ги законоположительные",  null),
 
     ("chu",     "Mt",                          "T матfeа",      "Мф.", null, false),
     ("chu",     "Mc",                           "T мaрка",      "Мк.", null, false),
     ("chu",     "Lc",                            "T луки",      "Лк.", null, false),
     ("chu",     "In",                          "T їwaнна",      "Ин.", null, false),
 
-    ("chu",  "HistN",               "Кни1ги исторические",       null, null,  null),
+    ("chu",  "HistN",               "Кни6ги исторические",       null, null,  null),
 
     ("chu",    "Act",                "Дэ‰ніz с™hхъ ґпcлъ",    "Деян.", "спи6сана с™hмъ ґпcломъ и3 є3ђлjстомъ лук0ю", false),
 
-    ("chu",   "DocN",                 "Кни1ги учительные",       null, null,  null),
+    ("chu",   "DocN",                 "Кни6ги учительные",       null, null,  null),
 
     ("chu",    "Jac",                           "Їaкwвле",     "Иак.", "соб0рное послaніе", false),
     ("chu",   "1Pet",                           "ПетрA №",    "1Пет.", "соб0рное послaніе", false),
@@ -108,7 +108,7 @@ insert into `headers` values
     ("chu",    "Phm",                       "Къ філим0ну",     "Флм.", null, false),
     ("chu",   "Hebr",                       "Ко є3врeємъ",     "Евр.", null, false),
 
-    ("chu", "ProvN",                 "Кни1ги пророческие",        null, null,  null),
+    ("chu", "ProvN",                 "Кни6ги пророческие",        null, null,  null),
 
     ("chu",  "Apoc",                       "Ґпокaлmpісъ",     "Откр.", "с™aгw їwaнна fєол0га", false);
 

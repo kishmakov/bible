@@ -2,7 +2,7 @@
 
 
 insert into `books` values
-    (  "Apoc", 151,    "Gen", 151,     "Ex", 151),
+    (  "Apoc",  22,    "Gen", 151,     "Ex", 151),
     (   "Gen", 151,     "Ex", 151,    "Lev", 151),
     (    "Ex", 151,    "Lev", 151,    "Num", 151),
     (   "Lev", 151,    "Num", 151,   "Deut", 151),
@@ -85,9 +85,9 @@ insert into `books` values
     (  "1Tim", 151,   "2Tim", 151,    "Tit", 151),
     (  "2Tim", 151,    "Tit", 151,    "Phm", 151),
     (   "Tit", 151,    "Phm", 151,   "Hebr", 151),
-    (   "Phm", 151,   "Hebr", 151,    "Jac", 151),
+    (   "Phm", 151,   "Hebr", 151,   "Apoc",  22),
 
-    (  "Hebr", 151,   "Apoc", 151,    "Gen", 151);
+    (  "Hebr", 151,   "Apoc", 22,    "Gen", 151);
 
 # --- !Downs
 
