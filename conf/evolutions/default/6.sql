@@ -2,10 +2,10 @@
 
 
 insert into `books` values
-    (  "Apoc",  22,    "Gen",  50,     "Ex", 151),
-    (   "Gen",  50,     "Ex", 151,    "Lev", 151),
-    (    "Ex", 151,    "Lev", 151,    "Num", 151),
-    (   "Lev", 151,    "Num", 151,   "Deut", 151),
+    (  "Apoc",  22,    "Gen",  50,     "Ex",  40),
+    (   "Gen",  50,     "Ex",  40,    "Lev",  27),
+    (    "Ex",  40,    "Lev",  27,    "Num", 151),
+    (   "Lev",  27,    "Num", 151,   "Deut", 151),
     (   "Num", 151,   "Deut", 151,    "Jos", 151),
 
     (  "Deut", 151,    "Jos", 151,   "Jdcs", 151),
