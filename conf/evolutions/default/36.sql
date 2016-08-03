@@ -1,6 +1,6 @@
 # --- !Ups
 
-update `headers` set `presented`=true where `lang`="chu" and `book_id`="3In";
+update `headers` set `presented`=true where `lang`="chu" and `book_id`="Jd";
 
 insert into `verses`
     (`lang`, `book_id`, `chapter`, `verse`, `text`)
@@ -33,6 +33,6 @@ insert into `verses`
 
 # --- !Downs
 
-update `headers` set `presented`=false where `lang`="chu" and `book_id`="3In";
+update `headers` set `presented`=false where `lang`="chu" and `book_id`="Jd";
 
-delete from `verses` where `lang`="chu" and `book_id`="3In";
+delete from `verses` where `lang`="chu" and `book_id`="Jd";
