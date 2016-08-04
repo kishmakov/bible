@@ -76,18 +76,18 @@ insert into `books` values
     (   "Rom",  16,   "1Cor",  16,   "2Cor",  13),
     (  "1Cor",  16,   "2Cor",  13,    "Gal",   6),
     (  "2Cor",  13,    "Gal",   6,    "Eph",   6),
-    (   "Gal",   6,    "Eph",   6,    "Php", 151),
-    (   "Eph",   6,    "Php", 151,    "Col", 151),
-    (   "Php", 151,    "Col", 151, "1Thess", 151),
-    (   "Col", 151, "1Thess", 151, "2Thess", 151),
-    ("1Thess", 151, "2Thess", 151,   "1Tim", 151),
-    ("2Thess", 151,   "1Tim", 151,   "2Tim", 151),
-    (  "1Tim", 151,   "2Tim", 151,    "Tit", 151),
-    (  "2Tim", 151,    "Tit", 151,    "Phm", 151),
-    (   "Tit", 151,    "Phm", 151,   "Hebr", 151),
-    (   "Phm", 151,   "Hebr", 151,   "Apoc",  22),
+    (   "Gal",   6,    "Eph",   6,    "Php",   4),
+    (   "Eph",   6,    "Php",   4,    "Col",   4),
+    (   "Php",   4,    "Col",   4, "1Thess",   5),
+    (   "Col",   4, "1Thess",   5, "2Thess",   3),
+    ("1Thess",   5, "2Thess",   3,   "1Tim",   6),
+    ("2Thess",   3,   "1Tim",   6,   "2Tim",   4),
+    (  "1Tim",   6,   "2Tim",   4,    "Tit",   3),
+    (  "2Tim",   4,    "Tit",   3,    "Phm",   1),
+    (   "Tit",   3,    "Phm",   1,   "Hebr",  13),
+    (   "Phm",   1,   "Hebr",  13,   "Apoc",  22),
 
-    (  "Hebr", 151,   "Apoc", 22,    "Gen",  50);
+    (  "Hebr",  13,   "Apoc", 22,    "Gen",  50);
 
 # --- !Downs
 
