@@ -1,4 +1,4 @@
-@(lang: String, chapter: Int, header: Header, book: Book, verses: Seq[Verse])
+@(lang: String, chapter: Int, header: Header, book: Book, verses: Seq[Verse], headers: Map[String, Header])
 
   @reference(href: String, title: String) = @{
       <a class="lead" href={href}><h2>{title}</h2></a>
@@ -26,7 +26,7 @@
     </div>
   }
 
-@main("Chapter", s"/chapter/${book.bookId}/$chapter/") {
+@main("Chapter", s"/chapter/${book.bookId}/$chapter/", headers, Map("1" -> "2")) {
   <div id="container" class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1 text-center">

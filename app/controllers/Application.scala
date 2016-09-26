@@ -3,7 +3,7 @@ package controllers
 import javax.inject.{Singleton, Inject}
 
 import models.{VersesDAO}
-import utils.{BooksCache, HeadersCache}
+import utils.{LangsCache, BooksCache, HeadersCache}
 import play.api.libs.json.{JsNumber, JsString, JsObject, Json}
 import play.api.mvc._
 
@@ -12,6 +12,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 @Singleton
 class Application @Inject()(val headersCache: HeadersCache,
                             val booksCache: BooksCache,
+                            val langsCache: LangsCache,
                             val versesDAO: VersesDAO
                            ) extends Controller {
 
@@ -25,7 +26,7 @@ class Application @Inject()(val headersCache: HeadersCache,
 
   def books(lang: String) = Action {
     headersCache(lang) match {
-      case Some(headers) => Ok(views.html.books(lang, headers))
+      case Some(headers) => Ok(views.html.books(lang, headers, langsCache.all))
         .withCookies(Cookie("lang", lang, httpOnly = false))
       case None => NotFound
     }
@@ -33,11 +34,12 @@ class Application @Inject()(val headersCache: HeadersCache,
 
   def chapter(bookId: String, chapter: Int, lang: String) = Action.async {
     val book = booksCache(bookId)
+    val headers = headersCache(lang)
     val header = headersCache(lang) flatMap(m => m get bookId)
     versesDAO.findByLangBookChapter(lang, bookId, chapter) map {
-      verses => (book, header) match {
-        case (Some(b), Some(h)) =>
-          Ok(views.html.chapter(lang, chapter, h, b, verses.sortWith(_.verse < _.verse)))
+      verses => (book, header, headers) match {
+        case (Some(b), Some(h), Some(hs)) =>
+          Ok(views.html.chapter(lang, chapter, h, b, verses.sortWith(_.verse < _.verse), hs))
             .withCookies(Cookie("lang", lang, httpOnly = false))
         case _ => NotFound
       }

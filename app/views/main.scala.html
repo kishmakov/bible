@@ -1,4 +1,4 @@
-@(title: String, baseUrl: String)(body: Html)
+@(title: String, baseUrl: String, headers: Map[String, Header], supLangs: Map[String, String])(body: Html)
 
 <!DOCTYPE html>
 
@@ -11,16 +11,13 @@
         <script> var _global = {
             baseUrl: '@baseUrl',
             headers: {
-                languageSelection:   'Язык',
-                supportiveLanguages: 'Уточняющие языки'
+                languageSelection:   '@headers("Lang").name',
+                supportiveLanguages: '@headers("SLangs").name'
             },
             languages: {
-                chu: 'Црькъвьнословѣ́ньскъ',
-                la:  'Latina',
-                gr:  'Ελληνικά',
-                ru:  'Русский'
+                @Html(supLangs.view.map({case (code, name) => s"$code : '$name'"}).mkString(", "))
             }
-        }; </script>
+        }</script>
         <script src="@routes.Assets.at("javascripts/main.js")"></script>
     </head>
     <body>

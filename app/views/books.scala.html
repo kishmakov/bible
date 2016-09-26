@@ -1,4 +1,4 @@
-@(lang: String, headers: Map[String, Header])
+@(lang: String, headers: Map[String, Header], supLangs: Map[String, String])
 
   @reference(header: Header, suffix: String = "") = @{
     val text = (if (header.name == header.clarification.getOrElse(header.name))
@@ -10,7 +10,7 @@
       <span class={s"font-$lang"}>&#x271A;&#x00A0;{text.replaceAll(" ", "\u00A0")}</span>
   }
 
-@main("Bible", "/books/") {
+@main("Bible", "/books/", headers, supLangs) {
   <div id="container" class="container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>

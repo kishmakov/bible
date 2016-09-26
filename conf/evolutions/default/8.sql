@@ -4,7 +4,7 @@ insert into `headers` values
     ("chu",    "Bib",                            "Библия",       null, null,  null),
     ("chu",  "Incan",                    "Неканоническая",       null, null,  null),
     ("chu",   "Lang",                              "Язык",       null, null,  null),
-    ("chu", "SLangs",                   "Уточняющие языки",      null, null,  null),
+    ("chu", "SLangs",                  "Уточняющие языки",       null, null,  null),
 
     ("chu",     "VT",                      "Ветхий Завет",       null, null,  null),
 
